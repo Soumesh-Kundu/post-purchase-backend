@@ -13,6 +13,5 @@ RUN npm ci --omit=dev && npm cache clean --force
 
 COPY . .
 
-RUN npm run start
 
 CMD ["npm", "run", "start"]
