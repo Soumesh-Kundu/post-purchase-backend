@@ -17,7 +17,9 @@ app.use(cors());
 
 // Basic route
 
-
+app.get('/health', (req, res) => {
+    res.send('OK');
+});
 const luxeFabricVarientId=42636048203891
 app.post('/api/offer', (req, res) => {
 	const { varientIds } = req.body;
