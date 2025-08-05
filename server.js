@@ -50,7 +50,7 @@ app.post('/api/sign-changeset', (req, res) => {
     res.send(JSON.stringify({ token }));
 })
 
-app.post('api/next-offer', (req, res) => {
+app.post('/api/next-offer', (req, res) => {
 
     const {offerId,accept=false}= req.body;
     const nextOfferLinks= prudctGraph[offerId];
