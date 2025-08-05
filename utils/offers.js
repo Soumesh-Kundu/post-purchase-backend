@@ -55,7 +55,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047319155"),
+        variantID: Number("46968634933475"),
         quantity: 1,
         discount: (() => {
           const d = 30;
@@ -101,7 +101,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047482995"),
+        variantID: Number("446968634867939"),
         quantity: 1,
         discount: (() => {
           const d = 50;
@@ -147,7 +147,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047581299"),
+        variantID: Number("46968634900707"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -191,7 +191,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047646835"),
+        variantID: Number("446968634802403"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -237,7 +237,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047614067"),
+        variantID: Number("46968634573027"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -283,7 +283,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047679603"),
+        variantID: Number("46968634310883"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -330,7 +330,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047745139"),
+        variantID: Number("46968634343651"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -376,7 +376,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047712371"),
+        variantID: Number("46968634376419"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -422,7 +422,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047941747"),
+        variantID: Number("46968634409187"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -468,7 +468,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("42636047908979"),
+        variantID: Number("46968634441955"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
