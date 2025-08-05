@@ -16,6 +16,20 @@ app.use(express.json());
 app.use(cors());
 
 // Basic route
+
+
+const luxeFabricVarientId=42636048203891
+app.post('/api/offer', (req, res) => {
+	const { varientIds } = req.body;
+	let offerId = '2c-v2';
+	if (varientIds.includes(luxeFabricVarientId)) {
+		offerId = '1a';
+	}
+	const offers = getOffers();
+	const offerProduct = offers.find((offer) => offer.id === offerId);
+
+	res.send(JSON.stringify({ offer: offerProduct }));
+});
 app.post('/api/sign-changeset', (req, res) => {
     const { changes , referenceId  } = req.body;
     
