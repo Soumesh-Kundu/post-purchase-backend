@@ -57,7 +57,7 @@ app.post('/api/next-offer', (req, res) => {
     const link=nextOfferLinks.length>1?+accept:0;
     const nextOfferid=nextOfferLinks[link];
     if(!nextOfferid){
-        return json({offer:null})
+        return res.send(JSON.stringify({offer:null}))
     }
     const offers=getOffers()
     const nextOffer=offers.find((offer)=>offer.id===nextOfferid);
