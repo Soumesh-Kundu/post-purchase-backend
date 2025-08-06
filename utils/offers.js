@@ -82,11 +82,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -128,11 +128,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -172,11 +172,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -218,11 +218,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -264,11 +264,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -307,15 +307,14 @@ const OFFERS = [
     productDescription: ["This PREMIUM snowboard is so SUPERDUPER awesome!"],
     originalPrice: "699.95",
     discountedPrice: "699.95",
-    
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -357,11 +356,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -403,11 +402,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
@@ -449,11 +448,11 @@ const OFFERS = [
     colors:[
       {
         name:"White",
-        color:"#FFFFFF",
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
       },
       {
         name:"Stone",
-        color:"#6e707f"
+        img:"https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
     priceOptions:[
