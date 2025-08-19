@@ -20,7 +20,7 @@ app.use(cors());
 app.get('/health', (req, res) => {
     res.send('OK');
 });
-const luxeFabricVarientId=42636048203891
+const luxeFabricVarientId=46968634933475
 app.post('/api/offer', (req, res) => {
 	const { varientIds } = req.body;
 	let offerId = '2c-v2';
