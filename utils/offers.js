@@ -1,6 +1,9 @@
+import {config} from 'dotenv';
+config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
 }
+const HOST=process.env.HOST || 'http://localhost:3000';
 const OFFERS = [
   {
     id: "1a",
@@ -8,11 +11,11 @@ const OFFERS = [
     productTitle: "Luxe",
     productImageURL:
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/01.webp",
-    productImageUrls: ["https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/01.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/1a/1.webp`,
+      `${HOST}/1a/2.webp`,
+      `${HOST}/1a/3.webp`,
+      `${HOST}/1a/4.webp`,
+      `${HOST}/1a/5.webp`
     ],
     productDescription: ["Almost all of our customers eventually buy more Miracle Comforters because their relatives and friends get bed envy!"],
     originalPrice: "949.95",
@@ -71,11 +74,11 @@ const OFFERS = [
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
     productDescription: ["No description available"],
-    productImageUrls: ["https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg?v=1733592307",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/1b/1.webp`,
+      `${HOST}/1b/2.webp`,
+      `${HOST}/1b/3.webp`,
+      `${HOST}/1b/4.webp`,
+      `${HOST}/1b/5.webp`
     ],
     originalPrice: "629.95",
     discountedPrice: "629.95",
@@ -160,11 +163,11 @@ const OFFERS = [
     id: "2c",
     title: "One time offer",
     productTitle: "Extra Sheet set",
-    productImageUrls: ["https://try.miraclebrand.co/up/comforter/images/sliders/2c/charcoal/01.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/2c/charcoal/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/2c/charcoal/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/2c/charcoal/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/2c/charcoal/05.webp",
+    productImageUrls: [`${HOST}/2d/1.webp`,
+      `${HOST}/2d/2.webp`,
+      `${HOST}/2d/3.webp`,
+      `${HOST}/2d/4.webp`,
+      `${HOST}/2d/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "885.95",
@@ -206,11 +209,11 @@ const OFFERS = [
     productTitle: "Extra Pillowcases",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg?v=1733592307",
-    productImageUrls: ["https://try.miraclebrand.co/up/comforter/images/sliders/3b/stone/01.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/3b/stone/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/3b/stone/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/3b/stone/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/3b/stone/05.webp",
+    productImageUrls: [`${HOST}/1a/1.webp`,
+      `${HOST}/1a/2.webp`,
+      `${HOST}/1a/3.webp`,
+      `${HOST}/1a/4.webp`,
+      `${HOST}/1a/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "2629.95",
@@ -252,11 +255,11 @@ const OFFERS = [
     productTitle: "Duvet Cover",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main.jpg?v=1733592307",
-    productImageUrls: ["https://try.miraclebrand.co/up/comforter/images/sliders/6b/stone/queen.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/6b/stone/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/6b/stone/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/6b/stone/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/6b/stone/05.webp"
+    productImageUrls: [`${HOST}/1b/1.webp`,
+      `${HOST}/1b/2.webp`,
+      `${HOST}/1b/3.webp`,
+      `${HOST}/1b/4.webp`,
+      `${HOST}/1b/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "885.95",
@@ -298,11 +301,11 @@ const OFFERS = [
     productTitle: "Comforter",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_589fc064-24a2-4236-9eaf-13b2bd35d21d.jpg?v=1733592307",
-    productImageUrls: ["https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/01.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/2d/1.webp`,
+      `${HOST}/2d/2.webp`,
+      `${HOST}/2d/3.webp`,
+      `${HOST}/2d/4.webp`,
+      `${HOST}/2d/5.webp`
     ],
     productDescription: ["This PREMIUM snowboard is so SUPERDUPER awesome!"],
     originalPrice: "699.95",
@@ -344,11 +347,11 @@ const OFFERS = [
     productTitle: "Mattress Protector",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/snowboard_sky.png?v=1733592308",
-    productImageUrls: ["https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg?v=1733592307",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/1a/1.webp`,
+      `${HOST}/1a/2.webp`,
+      `${HOST}/1a/3.webp`,
+      `${HOST}/1a/4.webp`,
+      `${HOST}/1a/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "785.95",
@@ -390,11 +393,11 @@ const OFFERS = [
     productTitle: "Kitchen Towels",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/snowboard_wax.png?v=1733592308",
-    productImageUrls: ["https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg?v=1733592307",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/1b/1.webp`,
+      `${HOST}/1b/2.webp`,
+      `${HOST}/1b/3.webp`,
+      `${HOST}/1b/4.webp`,
+      `${HOST}/1b/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "24.95",
@@ -436,11 +439,11 @@ const OFFERS = [
     productTitle: "Extra Sheets set",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg?v=1733592307",
-    productImageUrls: ["https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg?v=1733592307",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
+    productImageUrls: [`${HOST}/2d/1.webp`,
+      `${HOST}/2d/2.webp`,
+      `${HOST}/2d/3.webp`,
+      `${HOST}/2d/4.webp`,
+      `${HOST}/2d/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "749.95",
