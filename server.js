@@ -134,7 +134,6 @@ app.post('/api/sign-changeset', (req, res) => {
         sub: referenceId,
         changes: selectedOffer?.changes,
     };
-    console.log("Payload for JWT:", payload);
 
     const token = jwt.sign(payload, process.env.SHOPIFY_API_SECRET);
     res.setHeader('Content-Type', 'application/json');
