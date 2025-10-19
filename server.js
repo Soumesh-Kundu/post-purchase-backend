@@ -118,9 +118,9 @@ app.post('/api/offer', (req, res) => {
         offerId = '1a';
     }
     const offers = getOffers();
-    const offerProduct = offers.find((offer) => offer.id === offerId);
+    const offerProducts = offers.slice(0,4);
 
-    res.send(JSON.stringify({ offer: offerProduct }));
+    res.send(JSON.stringify({ offers: offerProducts }));
 });
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
@@ -134,6 +134,7 @@ app.post('/api/sign-changeset', (req, res) => {
         sub: referenceId,
         changes: selectedOffer?.changes,
     };
+    console.log("Payload for JWT:", payload);
 
     const token = jwt.sign(payload, process.env.SHOPIFY_API_SECRET);
     res.setHeader('Content-Type', 'application/json');
