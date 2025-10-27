@@ -111,7 +111,7 @@ app.post('/api/order-update', async (req, res) => {
 
 
 const luxeFabricVarientId = 46968634933475
-app.post('/api/offer', (req, res) => {
+app.post('/api/v2/offer', (req, res) => {
     const { varientIds } = req.body;
     let offerId = '2c-v2';
     if (varientIds.includes(luxeFabricVarientId)) {
@@ -121,6 +121,17 @@ app.post('/api/offer', (req, res) => {
     const offerProducts = offers.slice(0,4);
 
     res.send(JSON.stringify({ offers: offerProducts }));
+});
+app.post('/api/v1/offer', (req, res) => {
+    const { varientIds } = req.body;
+    let offerId = '2c-v2';
+    if (varientIds.includes(luxeFabricVarientId)) {
+        offerId = '1a';
+    }
+    const offers = getOffers();
+    const offerProduct = offers.find((offer) => offer.id === offerId);
+
+    res.send(JSON.stringify({ offer: offerProduct }));
 });
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
@@ -151,6 +162,7 @@ app.post('/api/next-offer', (req, res) => {
     }
     const offers = getOffers()
     const nextOffer = offers.find((offer) => offer.id === nextOfferid);
+    console.log("Next offer id:", nextOffer);
 
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ offer: nextOffer }));

@@ -182,6 +182,16 @@ const OFFERS = [
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
+    size: [
+      {
+        name: "King/Cali King",
+        size: "104 x 90 in"
+      },
+      {
+        name: "Queen",
+        size: "90 x 90 in"
+      }
+    ],
     priceOptions: [
       {
         name: "King/Cali King USD $129.00",
@@ -260,6 +270,16 @@ const OFFERS = [
       `${HOST}/1b/3.webp`,
       `${HOST}/1b/4.webp`,
       `${HOST}/1b/5.webp`
+    ],
+    size: [
+      {
+        name: "King/Cali King",
+        size: "104 x 90 in"
+      },
+      {
+        name: "Queen",
+        size: "90 x 90 in"
+      }
     ],
     productDescription: ["No description available"],
     originalPrice: "885.95",
@@ -364,6 +384,16 @@ const OFFERS = [
       {
         name: "Stone",
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
+      }
+    ],
+    size: [
+      {
+        name: "King/Cali King",
+        size: "104 x 90 in"
+      },
+      {
+        name: "Queen",
+        size: "90 x 90 in"
       }
     ],
     priceOptions: [
