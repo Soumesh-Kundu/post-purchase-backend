@@ -163,11 +163,11 @@ const OFFERS = [
     id: "2c",
     title: "One time offer",
     productTitle: "Extra Sheet set",
-    productImageUrls: [`${HOST}/2d/1.webp`,
-      `${HOST}/2d/2.webp`,
-      `${HOST}/2d/3.webp`,
-      `${HOST}/2d/4.webp`,
-      `${HOST}/2d/5.webp`
+    productImageUrls: [`${HOST}/2c/1.webp`,
+      `${HOST}/2c/2.webp`,
+      `${HOST}/2c/3.webp`,
+      `${HOST}/2c/4.webp`,
+      `${HOST}/2c/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "885.95",
@@ -204,7 +204,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("446968634802403"),
+        variantID: Number("47007473041652"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -219,11 +219,11 @@ const OFFERS = [
     productTitle: "Extra Pillowcases",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg?v=1733592307",
-    productImageUrls: [`${HOST}/1a/1.webp`,
-      `${HOST}/1a/2.webp`,
-      `${HOST}/1a/3.webp`,
-      `${HOST}/1a/4.webp`,
-      `${HOST}/1a/5.webp`
+    productImageUrls: [`${HOST}/3b/1.webp`,
+      `${HOST}/3b/2.webp`,
+      `${HOST}/3b/3.webp`,
+      `${HOST}/3b/4.webp`,
+      `${HOST}/3b/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "2629.95",
@@ -250,7 +250,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("46968634441955"),
+        variantID: Number("47007485264116"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -306,7 +306,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("46968634310883"),
+        variantID: Number("47007499747572"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -318,14 +318,14 @@ const OFFERS = [
   {
     id: "5b",
     title: "One time offer",
-    productTitle: "Comforter",
+    productTitle: "3 Zone Comforter",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_589fc064-24a2-4236-9eaf-13b2bd35d21d.jpg?v=1733592307",
-    productImageUrls: [`${HOST}/2d/1.webp`,
-      `${HOST}/2d/2.webp`,
-      `${HOST}/2d/3.webp`,
-      `${HOST}/2d/4.webp`,
-      `${HOST}/2d/5.webp`
+    productImageUrls: [`${HOST}/5b/1.webp`,
+      `${HOST}/5b/2.webp`,
+      `${HOST}/5b/3.webp`,
+      `${HOST}/5b/4.webp`,
+      `${HOST}/5b/5.webp`
     ],
     productDescription: ["This PREMIUM snowboard is so SUPERDUPER awesome!"],
     originalPrice: "699.95",
@@ -352,7 +352,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("46968634343651"),
+        variantID: Number("47007477661940"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -364,14 +364,14 @@ const OFFERS = [
   {
     id: "8b",
     title: "One time offer",
-    productTitle: "Mattress Protector",
+    productTitle: "Mattress Cover",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/snowboard_sky.png?v=1733592308",
-    productImageUrls: [`${HOST}/1a/1.webp`,
-      `${HOST}/1a/2.webp`,
-      `${HOST}/1a/3.webp`,
-      `${HOST}/1a/4.webp`,
-      `${HOST}/1a/5.webp`
+    productImageUrls: [`${HOST}/8b/1.webp`,
+      `${HOST}/8b/2.webp`,
+      `${HOST}/8b/3.webp`,
+      `${HOST}/8b/4.webp`,
+      `${HOST}/8b/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "785.95",
@@ -408,7 +408,7 @@ const OFFERS = [
     changes: [
       {
         type: "add_variant",
-        variantID: Number("46968634376419"),
+        variantID: Number("47007499944180"),
         quantity: 1,
         discount: (() => {
           const d = getRandomDiscount();
@@ -504,7 +504,92 @@ const OFFERS = [
         quantity: 1,
       },
     ],
-  },]
+  },
+  {
+    id: "4b",
+    title: "One time offer",
+    productTitle: "Limited Time Sale - Laundry Detergent Sheets",
+    productImageURL:
+      "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg?v=1733592307",
+    productImageUrls: [`${HOST}/4b/1.webp`,
+      `${HOST}/4b/2.webp`,
+      `${HOST}/4b/3.webp`,
+      `${HOST}/4b/4.webp`,
+      `${HOST}/4b/5.webp`
+    ],
+    productDescription: ["No description available"],
+    originalPrice: "749.95",
+    discountedPrice: "749.95",
+    colors: [
+      {
+        name: "White",
+        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
+      },
+      {
+        name: "Stone",
+        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
+      }
+    ],
+    priceOptions: [
+      {
+        name: "King/Cali King USD $129.00",
+        price: 129
+      }, {
+        name: "Queen USD $119.00",
+        price: 119
+      }
+    ],
+    changes: [
+      {
+        type: "add_variant",
+        variantID: Number("47007349801204"),
+        quantity: 1,
+      },
+    ],
+  },
+  {
+    id: "9b",
+    title: "One time offer",
+    productTitle: "Cotton Gauze Robe",
+    productImageURL:
+      "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg?v=1733592307",
+    productImageUrls: [`${HOST}/9b/1.webp`,
+      `${HOST}/9b/2.webp`,
+      `${HOST}/9b/3.webp`,
+      `${HOST}/9b/4.webp`,
+      `${HOST}/9b/5.webp`
+    ],
+    productDescription: ["No description available"],
+    originalPrice: "749.95",
+    discountedPrice: "749.95",
+    colors: [
+      {
+        name: "White",
+        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
+      },
+      {
+        name: "Stone",
+        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
+      }
+    ],
+    priceOptions: [
+      {
+        name: "King/Cali King USD $129.00",
+        price: 129
+      }, {
+        name: "Queen USD $119.00",
+        price: 119
+      }
+    ],
+    changes: [
+      {
+        type: "add_variant",
+        variantID: Number("47007424446708"),
+        quantity: 1,
+      },
+    ],
+  },
+]
 
 
 export const prudctGraph = {
@@ -513,11 +598,12 @@ export const prudctGraph = {
   "2c-v2": ["3b"],
   "2d": ["3b"],
   "2c": ["3b"],
-  "3b": ["6b"],
-  "6b": ["5b"],
-  "5b": ["8b"],
-  "8b": ["7b"],
-  "7b": [null],
+  "3b": ["5b"],
+  "5b": ["6b"],
+  "6b": ["8b"],
+  "8b": ["4b"],
+  "4b": ["9b"],
+  "9b": [null],
 }
 
 export function getOffers() {

@@ -113,10 +113,11 @@ app.post('/api/order-update', async (req, res) => {
 const luxeFabricVarientId = 46968634933475
 app.post('/api/v2/offer', (req, res) => {
     const { varientIds } = req.body;
-    let offerId = '2c-v2';
-    if (varientIds.includes(luxeFabricVarientId)) {
-        offerId = '1a';
-    }
+    // let offerId = '2c-v2';
+    let offerId = '2c';
+    // if (varientIds.includes(luxeFabricVarientId)) {
+    //     offerId = '1a';
+    // }
     const offers = getOffers();
     const offerProducts = offers.slice(0,4);
 
@@ -124,10 +125,10 @@ app.post('/api/v2/offer', (req, res) => {
 });
 app.post('/api/v1/offer', (req, res) => {
     const { varientIds } = req.body;
-    let offerId = '2c-v2';
-    if (varientIds.includes(luxeFabricVarientId)) {
-        offerId = '1a';
-    }
+    let offerId = '2c';
+    // if (varientIds.includes(luxeFabricVarientId)) {
+    //     offerId = '1a';
+    // }
     const offers = getOffers();
     const offerProduct = offers.find((offer) => offer.id === offerId);
 
