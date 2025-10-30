@@ -511,11 +511,11 @@ const OFFERS = [
     productTitle: "Limited Time Sale - Laundry Detergent Sheets",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg?v=1733592307",
-    productImageUrls: [`${HOST}/4b/1.webp`,
-      `${HOST}/4b/2.webp`,
-      `${HOST}/4b/3.webp`,
-      `${HOST}/4b/4.webp`,
-      `${HOST}/4b/5.webp`
+    productImageUrls: [`${HOST}/4b/1.jpg`,
+      `${HOST}/4b/2.jpg`,
+      `${HOST}/4b/3.jpg`,
+      `${HOST}/4b/4.jpg`,
+      `${HOST}/4b/5.jpg`
     ],
     productDescription: ["No description available"],
     originalPrice: "749.95",
