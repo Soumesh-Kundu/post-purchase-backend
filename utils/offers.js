@@ -606,6 +606,16 @@ export const prudctGraph = {
   "9b": [null],
 }
 
+export const softIdToHardIdMap = {
+  "2c":"gid://shopify/Product/9160101495028",
+  "3b": "gid://shopify/Product/9160102707444",
+  "5b": "gid://shopify/Product/9160101953780",
+  "6b": "gid://shopify/Product/9160106475764",
+  "8b": "gid://shopify/Product/9160106639604",
+  "4b": "gid://shopify/Product/9160093532404",
+  "9b": "gid://shopify/Product/9160100020468"
+}
+
 export function getOffers() {
   return OFFERS;
 }

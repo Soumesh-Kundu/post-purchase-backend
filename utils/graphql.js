@@ -1,5 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 export async function callGraphQl(query,variables={}){
-    const res=await fetch('https://miracle-brand-checkout-migrate-dev.myshopify.com/admin/api/2025-07/graphql.json',{
+    const res=await fetch(`https://${process.env.SHOP_DOMAIN}/admin/api/2025-07/graphql.json`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -10,7 +13,8 @@ export async function callGraphQl(query,variables={}){
     return await res.json()
 }
 
-export const mutationOrderEditBeginString = `mutation orderEditBegin($id: ID!) {
+export const mutationOrderEditBeginString = `#graphql
+mutation orderEditBegin($id: ID!) {
   orderEditBegin(id: $id) {
     calculatedOrder {
       id
@@ -34,7 +38,8 @@ export const mutationOrderEditBeginString = `mutation orderEditBegin($id: ID!) {
   }
 }`
 
-export const mutationOrderEditSetQuantityString=`mutation addVariantToOrder($id:ID!,$lineItemId:ID!,$restock:Boolean!,$quantity:Int!){
+export const mutationOrderEditSetQuantityString=`#graphql
+mutation addVariantToOrder($id:ID!,$lineItemId:ID!,$restock:Boolean!,$quantity:Int!){
   orderEditSetQuantity(id:$id, lineItemId:$lineItemId,restock:$restock,quantity: $quantity){
     calculatedOrder {
       id
@@ -60,7 +65,8 @@ export const mutationOrderEditSetQuantityString=`mutation addVariantToOrder($id:
 }
 `
 
-export const mutationOrderAddVariantString=`mutation addVariantToOrder($id:ID!,$variantId:ID!,$quantity:Int!){
+export const mutationOrderAddVariantString=`#graphql
+mutation addVariantToOrder($id:ID!,$variantId:ID!,$quantity:Int!){
   orderEditAddVariant(id: $id, variantId:$variantId, quantity: $quantity){
     calculatedOrder {
       id
@@ -80,7 +86,8 @@ export const mutationOrderAddVariantString=`mutation addVariantToOrder($id:ID!,$
   }
 }`
 
-export const mutationOrderEditCommitString=`mutation commitEdit($id:ID!) {
+export const mutationOrderEditCommitString=`#graphql
+mutation commitEdit($id:ID!) {
   orderEditCommit(id:$id, notifyCustomer: false, staffNote: "Updated by app") {
     order {
       id
