@@ -124,7 +124,7 @@ app.post('/api/v2/offer', (req, res) => {
 
     res.send(JSON.stringify({ offers: offerProducts }));
 });
-app.get('/api/v1/offer', async (req, res) => {
+app.post('/api/v1/offer', async (req, res) => {
     let offerId = '2c';
     const product=FirstOffer;
     const variantsMapping=await fs.readFile(`./utils/products/${offerId}.json`, 'utf-8');
