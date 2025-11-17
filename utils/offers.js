@@ -84,11 +84,17 @@ const OFFERS = [
       'Infused with silver that prevents up to 99.7% of bacteria growth',
       'Hypoallergenic and 100% vegan'
     ],
-    sizes: [{
+    sizes: [
+      {
       label: 'Queen',
       value: 'queen'
-    }],
-    color: [
+      }, 
+      {
+      label: 'King/Cali King',
+      value: 'king/cali_king'
+      } 
+  ],
+    colors: [
       { label: 'Stone', value: 'stone' },
       { label: 'White', value: 'white' }
     ]
@@ -110,7 +116,7 @@ const OFFERS = [
         value: 'king/cali_king'
       }
     ],
-    color: [
+    colors: [
       { label: 'Stone', value: 'stone' },
       { label: 'White', value: 'white' },
       { label: 'Sky Blue', value: 'sky_blue' }
@@ -133,7 +139,7 @@ const OFFERS = [
       { label: 'King', value: 'king' },
       { label: 'Cali King', value: 'cali_king' }
     ],
-    color: [
+    colors: [
       { label: 'White', value: 'white' },
     ]
   },
@@ -163,11 +169,14 @@ const OFFERS = [
         value: "192_loads"
       },
     ],
+    colors:[{
+      label: 'Default', value: 'default'
+    }]
   },
   {
-    id: "4b",
-    title: "Miracle Detergent",
-    productTitle: "Miracle Detergent",
+    id: "9b",
+    title: "Miracle Gauze Robe",
+    productTitle: "Miracle Gauze Robe",
     productDescription: [`Slip into something softer. Our new breathable gauze robe is crafted from 4-ply cotton that feels light yet cozy—and only gets softer with every wash. Silver-treated to prevent up to 99.7% of bacteria growth, it stays fresher between wears so you can relax without the laundry stress. Designed with thoughtful details like Japanese sashiko-inspired stitching, easy patch pockets, and a mid-calf fit that flatters and flows. It's not just a robe—it’s your new evening ritual.`],
     features: [
       'Lightweight, breathable 4-ply cotton gauze',
