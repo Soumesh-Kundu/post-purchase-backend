@@ -4,8 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString } from "./utils/graphql.js"
 import { fetchData } from "./utils/fetchProduct.js"
 import cors from 'cors';
-import { getOffers, getSelectedOffer,prudctGraph, softIdToHardIdMap } from './utils/offers.js';
+import { FirstOffer, getOffers, getSelectedOffer,prudctGraph, softIdToHardIdMap } from './utils/offers.js';
 import dotenv from 'dotenv';
+import fs from 'fs/promises';
 dotenv.config();
 
 
@@ -123,22 +124,18 @@ app.post('/api/v2/offer', (req, res) => {
 
     res.send(JSON.stringify({ offers: offerProducts }));
 });
-app.post('/api/v1/offer', async (req, res) => {
-    const { varientIds } = req.body;
+app.get('/api/v1/offer', async (req, res) => {
     let offerId = '2c';
-    // if (varientIds.includes(luxeFabricVarientId)) {
-    //     offerId = '1a';
-    // }
-    // const offers = getOffers();
-    // const offerProduct = offers.find((offer) => offer.id === offerId);
-    const productId=softIdToHardIdMap[offerId];
-    const product=await fetchData(productId)
-    res.send(JSON.stringify({ offer: {cid:offerId,...product} }));
+    const product=FirstOffer;
+    const variantsMapping=await fs.readFile(`./utils/products/${offerId}.json`, 'utf-8');
+    const products=Object.entries(JSON.parse(variantsMapping)).map(item => ({
+        ...product,
+        variants: item[1],
+    }))
+    res.send(JSON.stringify({ offer: products }));
 });
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
-
-    // const selectedOffer = getSelectedOffer(changes);
 
     const payload = {
         iss: process.env.SHOPIFY_API_KEY,
@@ -154,19 +151,23 @@ app.post('/api/sign-changeset', (req, res) => {
 })
 
 app.post('/api/next-offer', async (req, res) => {
-
     const { offerId, accept = false } = req.body;
-    const nextOfferLinks = prudctGraph[offerId];
+    let shouldOfferId = offerId;
+    if(offerId.includes("/")){
+      shouldOfferId=offerId.split("/")[0];
+    }
+    const nextOfferLinks = prudctGraph[shouldOfferId];
     const link = nextOfferLinks.length > 1 ? +accept : 0;
     const nextOfferid = nextOfferLinks[link];
     if (!nextOfferid) {
         return res.send(JSON.stringify({ offer: null }))
     }
-    const nextOffer = softIdToHardIdMap[nextOfferid];
-    const product=await fetchData(nextOffer);
-    // const offers = getOffers()
-    // const nextOffer = offers.find((offer) => offer.id === nextOfferid);
-    console.log("Next offer id:", nextOffer);
+    const nextOffer = getSelectedOffer(nextOfferid);
+    const variantsMapping=await fs.readFile(`./utils/products/${nextOfferid}.json`, 'utf-8');
+    const product= {
+        ...nextOffer,
+        variants: JSON.parse(variantsMapping)
+    };
 
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ offer: {cid:nextOfferid,...product} }));
