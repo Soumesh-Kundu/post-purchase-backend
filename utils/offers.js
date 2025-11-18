@@ -277,7 +277,6 @@ const OFFERS = [
       type: "normal",
       text: "Wrap yourself in clean comfort—lighter, fresher, better."
     }],
-    title: "Miracle Gauze Robe",
     productTitle: "Miracle Gauze Robe",
     productDescription: [`Slip into something softer. Our new breathable gauze robe is crafted from 4-ply cotton that feels light yet cozy—and only gets softer with every wash. Silver-treated to prevent up to 99.7% of bacteria growth, it stays fresher between wears so you can relax without the laundry stress. Designed with thoughtful details like Japanese sashiko-inspired stitching, easy patch pockets, and a mid-calf fit that flatters and flows. It's not just a robe—it’s your new evening ritual.`],
     features: [
