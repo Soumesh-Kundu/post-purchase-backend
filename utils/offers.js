@@ -108,12 +108,12 @@ const OFFERS = [
     ],
     sizes: [
       {
-        label: 'Full/Queen',
-        value: 'full/queen'
+        label: 'Queen',
+        value: 'queen'
       },
       {
-        label: 'King/Cali King',
-        value: 'king/cali_king'
+        label: 'Cali King',
+        value: 'cali_king'
       }
     ],
     colors: [
