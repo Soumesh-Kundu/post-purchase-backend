@@ -76,8 +76,8 @@ const OFFERS = [
       "Designed for a Cleaner Sleep",
       "Luxuriously soft sleep, every. single. night."
     ],
-    price: 61,
-    compareAtPrice: 44,
+    price: 44,
+    compareAtPrice: 61,
     discount: 27,
     optionsOrder: ['fabric', 'sizes', 'colors'],
     fabric: [
@@ -169,7 +169,7 @@ const OFFERS = [
     features: [
     ],
     price: 105,
-    compareAtPrice: 105,
+    compareAtPrice: 200,
     discount: 47,
     optionsOrder: ['sizes', 'colors'],
     sizes: [
