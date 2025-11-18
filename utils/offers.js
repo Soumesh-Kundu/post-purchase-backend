@@ -250,15 +250,15 @@ const OFFERS = [
     optionsOrder: ['sizes', 'colors'],
     sizes: [
       {
-        label: "Buy 1 Get 1 FREE (64 Loads)",
+        label: "Buy 1 Get 1 FREE (64 Loads) - USD $29*",
         value: "64_loads"
       },
       {
-        label: "Buy 2 Get 2 FREE (128 Loads)",
+        label: "Buy 2 Get 2 FREE (128 Loads) - USD $58*",
         value: "128_loads"
       },
       {
-        label: "Buy 3 Get 3 FREE (192 Loads)",
+        label: "Buy 3 Get 3 FREE (192 Loads) - USD $87*",
         value: "192_loads"
       },
     ],
