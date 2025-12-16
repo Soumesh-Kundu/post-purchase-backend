@@ -1,36 +1,22 @@
-import { callGraphQl } from "./graphql.js";
+import { fetchProductData } from "./utils/fetchProduct.js";
 import fs from 'fs/promises';
-import * as dotenv from "dotenv";
-dotenv.config();
 
-const MATRIX_URL="https://api.mtrix.io"
-const ORGANIZATION_ID=process.env.MATRIX_ORGANIZATION_ID
-const PROJECT_ID=process.env.MATRIX_PROJECT_ID
-const MEMBER_ID=process.env.MATRIX_MEMBER_ID
-export async function fetchProductData(slug) {
-  try {
-      console.time("fetch-product-data");
-      const query = `${MATRIX_URL}/products/view?route=${slug}`;
-      const authHeaders={
-        "x-mtrix-organization": ORGANIZATION_ID,
-        "x-mtrix-project": PROJECT_ID,
-        "x-mtrix-member": MEMBER_ID
-      }
-      const response=await fetch(query,{
-        headers:authHeaders
-      });
-    const responseData=await response.json();
-    const productData=responseData.data;
-    console.timeEnd("fetch-product-data");
-    return productData;
-  } catch (error) {
-    console.log("Error fetching product data:", error);
-    return []; // Return an empty array in case of error
-  }
-}
+const slug = "2c"
+const fileName = `./utils/matrix/${slug}.json`
 
+const data = await fs.readFile(fileName, 'utf-8');
+const products = JSON.parse(data);
+// const variants=product.variants;
+const slugs = products.map(products => ({ slug: products.slug })).sort((a, b) =>
+    a.slug.localeCompare(b.slug))
+const optionsArray=["Fabric","Size","Color"];
+// const optionsArray = ["Fabric", "Quantity", "Color"];
+const optionsToSelect = optionsArray.slice(1);
+const result =await firstOfferMapping(products, optionsToSelect);
+console.log(result);
+// console.dir(slugs, { depth: null });
 
-export async function firstOfferMapping(products, optionsToSelect,alreadyMapping={}) {
+async function firstOfferMapping(products, optionsToSelect) {
     const orderMapping={
         1:{
             slug:"get-1x-extra-miracle-sheet-set-clean-cool",
@@ -46,12 +32,11 @@ export async function firstOfferMapping(products, optionsToSelect,alreadyMapping
         }
     }
     //remove mapped data when moving to production
-    const mappedData=alreadyMapping;
+    const mappedData=JSON.parse(await fs.readFile(`./utils/products/${slug}.json`, 'utf-8'));
     const desiredProducts=products.filter(product=>new RegExp(Object.values(orderMapping).map(item=>item.slug).join("|")).test(product.slug)).reduce((acc,product)=>{
         acc[product.slug]=product;
         return acc;
     },{});
-    // console.log({desiredProducts})
     const result={};
     for(const [orderKey,orderValue] of Object.entries(orderMapping)){
         const product=desiredProducts[orderValue.slug];
@@ -63,7 +48,7 @@ export async function firstOfferMapping(products, optionsToSelect,alreadyMapping
     return result;
 }
 
-export function generalVariantMapping(variants, optionsToSelect, alreadyMapping={}) {
+function generalVariantMapping(variants, optionsToSelect, alreadyMapping={}) {
     const result = {};
     for (const variant of variants) {
         const options = { Color: "default" };
@@ -89,4 +74,3 @@ export function generalVariantMapping(variants, optionsToSelect, alreadyMapping=
     }
     return result;
 }
-

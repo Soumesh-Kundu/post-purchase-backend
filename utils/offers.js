@@ -142,7 +142,7 @@ const OFFERS = [
       },
       {
         label: 'King/Cali King',
-        value: 'king/cali_king'
+        value: 'cali_king'
       }
     ],
     colors: [
@@ -179,7 +179,7 @@ const OFFERS = [
       },
       {
         label: 'Cali King',
-        value: 'cali_king'
+        value: 'cali_king',
       }
     ],
     colors: [
@@ -251,15 +251,15 @@ const OFFERS = [
     sizes: [
       {
         label: "Buy 1 Get 1 FREE (64 Loads) - USD $29*",
-        value: "64_loads"
+        value: "1"
       },
       {
         label: "Buy 2 Get 2 FREE (128 Loads) - USD $58*",
-        value: "128_loads"
+        value: "2"
       },
       {
         label: "Buy 3 Get 3 FREE (192 Loads) - USD $87*",
-        value: "192_loads"
+        value: "3"
       },
     ],
     colors: [{
