@@ -242,8 +242,8 @@ app.post('/api/next-offer', async (req, res) => {
         const transactionId=generateRandomString()
         let userContext = convertSDK.createContext(convertId);
         const upsellQuantity=upsellItem.quantity
-        const upsellRevenue=Number(upsellItem.discountedUnitPriceSet.presentmentMoney.amount)*upsellQuantity
-        const upsellProfit=(Number(upsellItem.discountedUnitPriceSet.presentmentMoney.amount)-Number(upsellItem.variant.inventoryItem.unitCost.amount))*upsellQuantity
+        const upsellRevenue=Number(upsellItem.discountedUnitPriceSet?.presentmentMoney?.amount)*upsellQuantity
+        const upsellProfit=(Number(upsellItem.discountedUnitPriceSet?.presentmentMoney?.amount)-Number(upsellItem.variant.inventoryItem.unitCost?.amount))*upsellQuantity
         userContext?.trackConversion('add-upsell', {
             conversionData: [{
                 transactionId: `${transactionId}_${referenceId}_upsell`,
@@ -299,9 +299,10 @@ app.post('/api/purchase-conversion', async (req, res) => {
         const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
         const warrentyItemId="gid://shopify/ProductVariant/47007385452788"
         const revenue=Number(orders.data.orders.nodes[0]?.totalPriceSet.presentmentMoney.amount||100)
+        console.log({lineItems,revenue})
         const {totalProfit,totalQuantity}=lineItems.reduce((acc,items)=>{
-            const costPerItem=Number(items.variant.inventoryItem.unitCost.amount || 0)
-            const pricePerItem=Number(items.discountedUnitPriceSet.presentmentMoney.amount || 0)
+            const costPerItem=Number(items.variant?.inventoryItem?.unitCost?.amount || 0)
+            const pricePerItem=Number(items.discountedUnitPriceSet?.presentmentMoney?.amount || 0)
             acc.totalProfit+= (pricePerItem - costPerItem)*items.quantity
             acc.totalQuantity+=items.quantity
             return acc
@@ -345,6 +346,7 @@ app.post('/api/purchase-conversion', async (req, res) => {
         } 
         res.send(JSON.stringify({ success: true }));
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Failed to track conversion' });
     }
 });
