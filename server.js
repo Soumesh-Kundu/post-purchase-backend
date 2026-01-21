@@ -1,12 +1,14 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString } from "./utils/graphql.js"
+import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString, queryOrderByReferenceId } from "./utils/graphql.js"
 import { fetchProductData, firstOfferMapping, generalVariantMapping } from "./utils/fetchProduct.js"
 import cors from 'cors';
 import { FirstOffer, getOffers, getSelectedOffer, prudctGraph, softIdToHardIdMap } from './utils/offers.js';
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
+import * as ConvertSDKModule from "@convertcom/js-sdk"
+const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
 dotenv.config();
 
 
@@ -122,7 +124,34 @@ app.post('/api/v2/offer', (req, res) => {
 
     res.send(JSON.stringify({ offers: offerProducts }));
 });
+const generateRandomString = () => {
+		function generateRandomSegment(length) {
+			let result = '';
+			const characters = 'abcdefgh0123456789';
+	
+			for (let i = 0; i < length; i++) {
+				const randomIndex = Math.floor(Math.random() * characters.length);
+				result += characters.charAt(randomIndex);
+			}
+			return result;
+		  }
+	
+		const segment1 = generateRandomSegment(8);
+		const segment2 = generateRandomSegment(4);
+		const segment3 = generateRandomSegment(4);
+		const segment4 = generateRandomSegment(12);
+	
+		return `${segment1}-${segment2}-${segment3}-${segment4}`;
+	};
+
 app.post('/api/v1/offer', async (req, res) => {
+    const convertSDK = new ConvertSDK({
+		sdkKey: '100414426/100416021',
+		environment: 'production',
+		dataRefreshInterval: 5000
+	});
+	await convertSDK.onReady();
+    const convertUUID = generateRandomString();
     let offerId = '2c';
     const product = FirstOffer;
 
@@ -137,11 +166,17 @@ app.post('/api/v1/offer', async (req, res) => {
         ...product,
         variants: item[1],
     }))
-    res.send(JSON.stringify({ offer: products }));
+    let userContext = convertSDK.createContext(convertUUID);
+    const testExperiment = userContext.runExperience('dev-shopify-checkout', {
+		locationProperties: { pageSlug: '/sheets/ksp' }
+	});
+    console.log("testExperiment",testExperiment);
+    res.send(JSON.stringify({ offer: products,testExperiment,convertUUID }));
 });
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
 
+    console.log("changes", changes);
     const payload = {
         iss: process.env.SHOPIFY_API_KEY,
         jti: uuidv4(),
@@ -156,7 +191,7 @@ app.post('/api/sign-changeset', (req, res) => {
 })
 
 app.post('/api/next-offer', async (req, res) => {
-    const { offerId, accept = false } = req.body;
+    const { offerId, accept = false, referenceId,convertId,currentVariantId} = req.body;
     let shouldOfferId = offerId;
     if (offerId.includes("/")) {
         shouldOfferId = offerId.split("/")[0];
@@ -191,10 +226,144 @@ app.post('/api/next-offer', async (req, res) => {
         variants: variantsMapping
     };
 
+    const orders=await callGraphQl(queryOrderByReferenceId,{
+        query:`checkout_token:${referenceId}`
+    })
+    const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
+    const upsellItem=lineItems.find(item=>item.variant.id===`gid://shopify/ProductVariant/${currentVariantId}`)
+    console.log({upsellItem,accept,currentVariantId})
+    if(accept && currentVariantId && upsellItem){
+         const convertSDK = new ConvertSDK({
+           sdkKey: '100414426/100416021',
+           environment: 'production',
+           dataRefreshInterval: 5000
+        });
+        await convertSDK.onReady();
+        const transactionId=generateRandomString()
+        let userContext = convertSDK.createContext(convertId);
+        const upsellQuantity=upsellItem.quantity
+        const upsellRevenue=Number(upsellItem.discountedUnitPriceSet.presentmentMoney.amount)*upsellQuantity
+        const upsellProfit=(Number(upsellItem.discountedUnitPriceSet.presentmentMoney.amount)-Number(upsellItem.variant.inventoryItem.unitCost.amount))*upsellQuantity
+        userContext?.trackConversion('add-upsell', {
+            conversionData: [{
+                transactionId: `${transactionId}_${referenceId}_upsell`,
+                    amount: upsellRevenue,
+                    productsCount: upsellQuantity
+                }]
+		});
+		userContext?.trackConversion('total-revenue', {
+			conversionData: [{
+				transactionId: `${transactionId}_${referenceId}_upsell_revenue`,
+				amount: upsellRevenue,
+				productsCount: upsellQuantity
+			}]
+		});
+
+        if (upsellProfit>0){
+            userContext.trackConversion("profit",{
+                conversionData:[{
+                    transactionId:`${transactionId}_${referenceId}_profit`,
+                    amount: upsellProfit,
+                    productsCount: upsellQuantity
+                }]
+            })
+            userContext.trackConversion("upsell-profit",{
+                conversionData:[{
+                    transactionId:`${transactionId}_${referenceId}_upsell_profit`,
+                    amount: upsellProfit,
+                    productsCount: upsellQuantity
+                }]
+            })
+        }
+        
+    }
+
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ offer: { cid: nextOfferid, ...product } }));
 })
 
+
+app.post('/api/purchase-conversion', async (req, res) => {
+    try {    
+        const { convertId,referenceId } = req.body;
+        const convertSDK = new ConvertSDK({
+           sdkKey: '100414426/100416021',
+           environment: 'production',
+           dataRefreshInterval: 5000
+        });
+        await convertSDK.onReady();
+        let userContext = convertSDK.createContext(convertId);
+        const orders=await callGraphQl(queryOrderByReferenceId,{
+            query:`checkout_token:${referenceId}`
+        })
+        const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
+        const warrentyItemId="gid://shopify/ProductVariant/47007385452788"
+        const revenue=Number(orders.data.orders.nodes[0]?.totalPriceSet.presentmentMoney.amount||100)
+        const {totalProfit,totalQuantity}=lineItems.reduce((acc,items)=>{
+            const costPerItem=Number(items.variant.inventoryItem.unitCost.amount || 0)
+            const pricePerItem=Number(items.discountedUnitPriceSet.presentmentMoney.amount || 0)
+            acc.totalProfit+= (pricePerItem - costPerItem)*items.quantity
+            acc.totalQuantity+=items.quantity
+            return acc
+        },{
+            totalProfit:0,
+            totalQuantity:0
+        })
+        const transactionId=generateRandomString()
+        userContext.trackConversion('purchase',{
+            conversionData: [{
+                transactionId: transactionId,
+                amount: revenue,
+                productsCount: totalQuantity
+            }]
+        });
+        userContext?.trackConversion('total-revenue', {
+            conversionData: [{
+				transactionId: `${transactionId}_${referenceId}`,
+                amount: revenue,
+                productsCount: totalQuantity
+            }]
+        });
+        if(lineItems.find(item=>item.variant.id===warrentyItemId)){
+            userContext.trackConversion('add-warrenty')
+        }
+        if(totalProfit>0 && totalQuantity>0){
+            userContext.trackConversion("profit",{
+                conversionData:[{
+                    transactionId:`${transactionId}_${referenceId}_profit`,
+                    amount: totalProfit,
+                    productsCount: totalQuantity
+                }]
+            })
+            userContext.trackConversion("initial-profit",{
+                conversionData:[{
+                    transactionId:`${transactionId}_${referenceId}_initial_profit`,
+                    amount: totalProfit,
+                    productsCount: totalQuantity
+                }]
+            })
+        } 
+        res.send(JSON.stringify({ success: true }));
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to track conversion' });
+    }
+});
+
+app.post('/api/view-receipt-conversion',async (req,res)=>{
+    try {
+        const { convertId } = req.body;
+        const convertSDK = new ConvertSDK({
+           sdkKey: '100414426/100416021',
+           environment: 'production',
+        });
+        await convertSDK.onReady();
+        let userContext = convertSDK.createContext(convertId);
+        userContext.trackConversion('view-receipt')
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Failed to track conversion' });
+    }   
+})
 
 // Start server
 app.listen(PORT, () => {

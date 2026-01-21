@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export async function callGraphQl(query,variables={}){
-    const res=await fetch(`https://${process.env.SHOP_DOMAIN}/admin/api/2025-07/graphql.json`,{
+    const res=await fetch(`https://${process.env.SHOP_DOMAIN}/admin/api/2026-01/graphql.json`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -95,6 +95,41 @@ mutation commitEdit($id:ID!) {
     userErrors {
       field
       message
+    }
+  }
+}
+`
+
+export const queryOrderByReferenceId=`#graphql
+query ($query: String!) {
+  orders(first:1,query:$query){
+    nodes{
+      id
+      totalPriceSet{
+        presentmentMoney{
+          amount
+        }
+      }
+      lineItems(first:250){
+        nodes{
+          id
+          title
+					quantity
+          variant{
+            id
+            inventoryItem{
+              unitCost{
+                amount
+              }
+            }
+          }
+					discountedUnitPriceSet{
+            presentmentMoney{
+              amount
+            }
+          }
+        }
+      }
     }
   }
 }
