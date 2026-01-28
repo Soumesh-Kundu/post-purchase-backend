@@ -44,6 +44,7 @@ app.post('/api/order-update', async (req, res) => {
             id: orderId
         }
         )
+        
         const calculatedOrderId = data.orderEditBegin.calculatedOrder.id
         const lineItems = data.orderEditBegin.calculatedOrder.lineItems.edges.map(edge => edge.node).reduce((acc, item) => {
             acc[item.variant.id] = {
@@ -145,13 +146,6 @@ const generateRandomString = () => {
 	};
 
 app.post('/api/v1/offer', async (req, res) => {
-    const convertSDK = new ConvertSDK({
-		sdkKey: '100414426/100416021',
-		environment: 'production',
-		dataRefreshInterval: 5000
-	});
-	await convertSDK.onReady();
-    const convertUUID = generateRandomString();
     let offerId = '2c';
     const product = FirstOffer;
 
@@ -166,12 +160,7 @@ app.post('/api/v1/offer', async (req, res) => {
         ...product,
         variants: item[1],
     }))
-    let userContext = convertSDK.createContext(convertUUID);
-    const testExperiment = userContext.runExperience('dev-shopify-checkout', {
-		locationProperties: { pageSlug: '/sheets/ksp' }
-	});
-    console.log("testExperiment",testExperiment);
-    res.send(JSON.stringify({ offer: products,testExperiment,convertUUID }));
+    res.send(JSON.stringify({ offer: products }));
 });
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
@@ -191,7 +180,7 @@ app.post('/api/sign-changeset', (req, res) => {
 })
 
 app.post('/api/next-offer', async (req, res) => {
-    const { offerId, accept = false, referenceId,convertId,currentVariantId} = req.body;
+    const { offerId, accept = false, referenceId,currentVariantId} = req.body;
     let shouldOfferId = offerId;
     if (offerId.includes("/")) {
         shouldOfferId = offerId.split("/")[0];
@@ -229,10 +218,12 @@ app.post('/api/next-offer', async (req, res) => {
     const orders=await callGraphQl(queryOrderByReferenceId,{
         query:`checkout_token:${referenceId}`
     })
-    const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
+    const order=orders.data.orders.nodes[0]
+    const convertId=order.customAttributes.find(attr=>attr.key==="userId")?.value
+    const lineItems=order.lineItems.nodes||[]
     const upsellItem=lineItems.find(item=>item.variant.id===`gid://shopify/ProductVariant/${currentVariantId}`)
     console.log({upsellItem,accept,currentVariantId})
-    if(accept && currentVariantId && upsellItem){
+    if(accept && currentVariantId && upsellItem && convertId){
          const convertSDK = new ConvertSDK({
            sdkKey: '100414426/100416021',
            environment: 'production',
@@ -285,21 +276,26 @@ app.post('/api/next-offer', async (req, res) => {
 
 app.post('/api/purchase-conversion', async (req, res) => {
     try {    
-        const { convertId,referenceId } = req.body;
+        const { referenceId } = req.body;
         const convertSDK = new ConvertSDK({
            sdkKey: '100414426/100416021',
            environment: 'production',
            dataRefreshInterval: 5000
         });
         await convertSDK.onReady();
-        let userContext = convertSDK.createContext(convertId);
         const orders=await callGraphQl(queryOrderByReferenceId,{
             query:`checkout_token:${referenceId}`
         })
+        const order=orders.data.orders.nodes[0]
+        const convertId=order.customAttributes.find(attr=>attr.key==="userId")?.value
         const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
         const warrentyItemId="gid://shopify/ProductVariant/47007385452788"
         const revenue=Number(orders.data.orders.nodes[0]?.totalPriceSet.presentmentMoney.amount||100)
-        console.log({lineItems,revenue})
+        if(!convertId){
+            return res.status(200).json({ error: 'No convertId found' });
+        }
+        let userContext = convertSDK.createContext(convertId);
+
         const {totalProfit,totalQuantity}=lineItems.reduce((acc,items)=>{
             const costPerItem=Number(items.variant?.inventoryItem?.unitCost?.amount || 0)
             const pricePerItem=Number(items.discountedUnitPriceSet?.presentmentMoney?.amount || 0)
@@ -353,12 +349,20 @@ app.post('/api/purchase-conversion', async (req, res) => {
 
 app.post('/api/view-receipt-conversion',async (req,res)=>{
     try {
-        const { convertId } = req.body;
+        const { referenceId } = req.body;
         const convertSDK = new ConvertSDK({
            sdkKey: '100414426/100416021',
            environment: 'production',
         });
         await convertSDK.onReady();
+        const orders=await callGraphQl(queryOrderByReferenceId,{
+            query:`checkout_token:${referenceId}`
+        })
+        const order=orders.data.orders.nodes[0]
+        const convertId=order.customAttributes.find(attr=>attr.key==="userId")?.value
+        if(!convertId){
+            return res.status(200).json({ error: 'No convertId found' });
+        }
         let userContext = convertSDK.createContext(convertId);
         userContext.trackConversion('view-receipt')
     }

@@ -110,6 +110,10 @@ query ($query: String!) {
           amount
         }
       }
+      customAttributes{
+        key
+        value
+      }
       lineItems(first:250){
         nodes{
           id
