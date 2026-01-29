@@ -8,8 +8,10 @@ import { FirstOffer, getOffers, getSelectedOffer, prudctGraph, softIdToHardIdMap
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
+import mixpanel from 'mixpanel';
 const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
 dotenv.config();
+const mp=mixpanel.init(process.env.MIXPANEL_ID)
 
 
 const app = express();
@@ -266,7 +268,14 @@ app.post('/api/next-offer', async (req, res) => {
                 }]
             })
         }
-        
+        mixpanel.track("Upsell_1",{
+                value: upsellRevenue,
+                created_at: new Date().toISOString(),
+                order_number: transactionId,
+                userId: userId,
+                order_id: `${transactionId}_${referenceId}_upsell`
+            }
+        );
     }
 
     res.setHeader('Content-Type', 'application/json');
