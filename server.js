@@ -268,11 +268,11 @@ app.post('/api/next-offer', async (req, res) => {
                 }]
             })
         }
-        mixpanel.track("Upsell_1",{
+        mp.track("Upsell_1",{
                 value: upsellRevenue,
                 created_at: new Date().toISOString(),
                 order_number: transactionId,
-                userId: userId,
+                userId:  convertId,
                 order_id: `${transactionId}_${referenceId}_upsell`
             }
         );
