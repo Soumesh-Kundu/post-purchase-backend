@@ -276,6 +276,7 @@ app.post('/api/next-offer', async (req, res) => {
                 order_id: `${transactionId}_${referenceId}_upsell`
             }
         );
+		console.log(mp);
     }
 
     res.setHeader('Content-Type', 'application/json');
