@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString, queryOrderByReferenceId } from "./utils/graphql.js"
 import { fetchProductData, firstOfferMapping, generalVariantMapping } from "./utils/fetchProduct.js"
 import cors from 'cors';
-import { FirstOffer, getOffers, getSelectedOffer, prudctGraph, softIdToHardIdMap } from './utils/offers.js';
+import { FirstOffer, getOffers, getOffersV2, getSelectedOffer, prudctGraph, softIdToHardIdMap } from './utils/offers.js';
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
@@ -122,7 +122,7 @@ app.post('/api/v2/offer', (req, res) => {
     // if (varientIds.includes(luxeFabricVarientId)) {
     //     offerId = '1a';
     // }
-    const offers = getOffers();
+    const offers = getOffersV2();
     const offerProducts = offers.slice(0, 4);
 
     res.send(JSON.stringify({ offers: offerProducts }));
@@ -149,6 +149,7 @@ const generateRandomString = () => {
 
 app.post('/api/v1/offer', async (req, res) => {
     let offerId = '2c';
+    const {referenceId}=req.body;
     const product = FirstOffer;
 
     const alreadyMappedVariantsPromise = fs.readFile(`./utils/products/${offerId}.json`, 'utf-8');
@@ -162,6 +163,11 @@ app.post('/api/v1/offer', async (req, res) => {
         ...product,
         variants: item[1],
     }))
+    console.log({referenceId})
+    const orders=await callGraphQl(queryOrderByReferenceId,{
+        query:`checkout_token:${referenceId}`
+    })
+    console.log("orders",orders)
     res.send(JSON.stringify({ offer: products }));
 });
 app.post('/api/sign-changeset', (req, res) => {
@@ -300,6 +306,7 @@ app.post('/api/purchase-conversion', async (req, res) => {
         const lineItems=orders.data.orders.nodes[0]?.lineItems.nodes||[]
         const warrentyItemId="gid://shopify/ProductVariant/47007385452788"
         const revenue=Number(orders.data.orders.nodes[0]?.totalPriceSet.presentmentMoney.amount||100)
+        console.dir({referenceId, order},{depth:null})
         if(!convertId){
             return res.status(200).json({ error: 'No convertId found' });
         }
