@@ -182,6 +182,11 @@ app.post('/api/sign-changeset', (req, res) => {
         changes: changes,
     };
 
+	   mp.track("Upsell_1",{
+                value: '97898797'
+            }
+        );
+
     const token = jwt.sign(payload, process.env.SHOPIFY_API_SECRET);
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ token }));
@@ -282,6 +287,7 @@ app.post('/api/next-offer', async (req, res) => {
                 order_id: `${transactionId}_${referenceId}_upsell`
             }
         );
+		console.log(mp);
     }
 
     res.setHeader('Content-Type', 'application/json');
