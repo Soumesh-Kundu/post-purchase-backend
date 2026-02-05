@@ -318,7 +318,7 @@ const OFFERS_V2=[
     productTitle: "A SECOND SET",
     productImageURL:
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/01.webp",
-    productImageUrls: [`${HOST}/1a/1.webp`,
+    productImageUrls: [`${HOST}/v2/1.png`,
       `${HOST}/1a/2.webp`,
       `${HOST}/1a/3.webp`,
       `${HOST}/1a/4.webp`,
@@ -381,7 +381,7 @@ const OFFERS_V2=[
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
     productDescription: ["No description available"],
-    productImageUrls: [`${HOST}/1b/1.webp`,
+    productImageUrls: [`${HOST}/v2/2.png`,
       `${HOST}/1b/2.webp`,
       `${HOST}/1b/3.webp`,
       `${HOST}/1b/4.webp`,
@@ -426,7 +426,7 @@ const OFFERS_V2=[
     productTitle: "DUVET COVER",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1733592307",
-    productImageUrls: ["https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg?v=1733592307",
+    productImageUrls: [`${HOST}/v2/3.png`,
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/02.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/03.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
@@ -470,7 +470,7 @@ const OFFERS_V2=[
     id: "2c",
     title: "One time offer",
     productTitle: "SILVER-SAFE DETERGENT",
-    productImageUrls: [`${HOST}/2d/1.webp`,
+    productImageUrls: [`${HOST}/v2/4.png`,
       `${HOST}/2d/2.webp`,
       `${HOST}/2d/3.webp`,
       `${HOST}/2d/4.webp`,
