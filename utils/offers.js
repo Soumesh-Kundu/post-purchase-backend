@@ -317,7 +317,7 @@ const OFFERS_V2 = [
   {
     id: "1a",
     title: "One time offer",
-    productTitle: "3 Zone Comforter",
+    productTitle: "3 ZONE COMFORTER",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697",
     productImageUrls: [`https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697`,
