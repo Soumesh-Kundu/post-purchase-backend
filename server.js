@@ -114,9 +114,37 @@ app.post('/api/order-update', async (req, res) => {
 })
 
 
+// Helper function to detect device type from User-Agent
+const detectDeviceType = (userAgent) => {
+    if (!userAgent) {
+        return 'desktop'; // default to desktop if no user-agent
+    }
+    
+    const ua = userAgent.toLowerCase();
+    
+    // Tablet/Pad detection
+    if (/ipad|android(?:.*?)tablet|kindle|playbook|silk|nexus 7|nexus 10|xoom|motorola|trident.*tablet|windows.*touch/i.test(ua)) {
+        return 'pad';
+    }
+    
+    // Mobile detection
+    if (/mobile|android|iphone|ipod|blackberry|iemobile|opera mini|windows phone|webos|palm|symbian|j2me|midp|cldc|netfront|midp-2|plucker|teleca|u11|uberSoldier|uplink|vodafone|wap|windows ce|xda|zte|zune/i.test(ua)) {
+        return 'mobile';
+    }
+    
+    // Default to desktop
+    return 'desktop';
+};
+
 const luxeFabricVarientId = 46968634933475
 app.post('/api/v2/offer', (req, res) => {
     const { varientIds } = req.body;
+    // console.log(req.headers)
+    
+    // Detect device type from User-Agent header
+    const deviceType = detectDeviceType(req.headers['user-agent']);
+    
+    // console.log("deviceType", deviceType)
     // let offerId = '2c-v2';
     let offerId = '2c';
     // if (varientIds.includes(luxeFabricVarientId)) {
@@ -125,7 +153,7 @@ app.post('/api/v2/offer', (req, res) => {
     const offers = getOffersV2();
     const offerProducts = offers.slice(0, 4);
 
-    res.send(JSON.stringify({ offers: offerProducts }));
+    res.send(JSON.stringify({ offers: offerProducts, deviceType }));
 });
 const generateRandomString = () => {
 		function generateRandomSegment(length) {
