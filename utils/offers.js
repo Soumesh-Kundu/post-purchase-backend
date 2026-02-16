@@ -1,4 +1,5 @@
 import { config } from 'dotenv';
+import { readFile, writeFile } from 'fs/promises';
 config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
@@ -250,15 +251,15 @@ const OFFERS = [
     optionsOrder: ['sizes', 'colors'],
     sizes: [
       {
-        label: "Buy 1 Get 1 FREE (64 Loads) - USD $29*",
+        label: "Buy 1 Get 1 FREE (64 Loads) - $29*",
         value: "1"
       },
       {
-        label: "Buy 2 Get 2 FREE (128 Loads) - USD $58*",
+        label: "Buy 2 Get 2 FREE (128 Loads) - $58*",
         value: "2"
       },
       {
-        label: "Buy 3 Get 3 FREE (192 Loads) - USD $87*",
+        label: "Buy 3 Get 3 FREE (192 Loads) - $87*",
         value: "3"
       },
     ],
@@ -269,7 +270,7 @@ const OFFERS = [
   {
     id: "9b",
     preTitle: "Just Dropped",
-    title: [ {
+    title: [{
       type: "normal",
       text: "Our New Robe Is Made to Breathe (and Feel Amazing)"
     }],
@@ -311,18 +312,19 @@ const OFFERS = [
   },
 ]
 
-const OFFERS_V2=[
+
+const OFFERS_V2 = [
   {
     id: "1a",
     title: "One time offer",
     productTitle: "A SECOND SET",
     productImageURL:
-      "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/01.webp",
-    productImageUrls: [`${HOST}/v2/1.png`,
-      `${HOST}/1a/2.webp`,
-      `${HOST}/1a/3.webp`,
-      `${HOST}/1a/4.webp`,
-      `${HOST}/1a/5.webp`
+      "https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697",
+    productImageUrls: [`https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697`,
+    `${HOST}/1a/2.webp`,
+    `${HOST}/1a/3.webp`,
+    `${HOST}/1a/4.webp`,
+    `${HOST}/1a/5.webp`
     ],
     productDescription: ["Almost all of our customers eventually buy more Miracle Comforters because their relatives and friends get bed envy!"],
     originalPrice: "949.95",
@@ -332,16 +334,6 @@ const OFFERS_V2=[
       "Ultra-luxurious, 300-thread count Miracle Clean & Cool™ fabric",
       "Infused with silver that prevents up to 99.7% of bacteria growth",
       "Hypoallergenic and 100% vegan"
-    ],
-    size: [
-      {
-        name: "King/Cali King",
-        size: "104 x 90 in"
-      },
-      {
-        name: "Queen",
-        size: "90 x 90 in"
-      }
     ],
     colors: [
       {
@@ -353,15 +345,18 @@ const OFFERS_V2=[
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    priceOptions: [
+    sizes: [
       {
-        name: "King/Cali King USD $129.00",
+        key:"king/cali_king",
+        name: "King/Cali King",
         price: 129
       }, {
-        name: "Queen USD $119.00",
+        key:"queen",
+        name: "Queen",
         price: 119
       }
     ],
+    variants: JSON.parse(await readFile('./utils/multiple-products-staging/comforter.json','utf-8')),
     changes: [
       {
         type: "add_variant",
@@ -382,11 +377,12 @@ const OFFERS_V2=[
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
     productDescription: ["No description available"],
     productImageUrls: [`${HOST}/v2/2.png`,
-      `${HOST}/1b/2.webp`,
-      `${HOST}/1b/3.webp`,
-      `${HOST}/1b/4.webp`,
-      `${HOST}/1b/5.webp`
+    `${HOST}/1b/2.webp`,
+    `${HOST}/1b/3.webp`,
+    `${HOST}/1b/4.webp`,
+    `${HOST}/1b/5.webp`
     ],
+    variants: JSON.parse(await readFile('./utils/multiple-products-staging/pillow.json','utf-8')) ,
     originalPrice: "629.95",
     discountedPrice: "629.95",
     colors: [
@@ -399,12 +395,14 @@ const OFFERS_V2=[
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    priceOptions: [
+    sizes: [
       {
-        name: "King/Cali King USD $129.00",
+        key:"king",
+        name: "King",
         price: 129
       }, {
-        name: "Queen USD $119.00",
+        key:"standard",
+        name: "Standard",
         price: 119
       }
     ],
@@ -445,15 +443,18 @@ const OFFERS_V2=[
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    priceOptions: [
+    sizes: [
       {
-        name: "King/Cali King USD $129.00",
+        key:"king/cali_king",
+        name: "King/Cali King",
         price: 129
       }, {
-        name: "Queen USD $119.00",
+        key:"full_queen",  
+        name: "Full Queen",
         price: 119
       }
     ],
+    variants: JSON.parse(await readFile('./utils/multiple-products-staging/duvet.json','utf-8')),
     changes: [
       {
         type: "add_variant",
@@ -471,10 +472,10 @@ const OFFERS_V2=[
     title: "One time offer",
     productTitle: "SILVER-SAFE DETERGENT",
     productImageUrls: [`${HOST}/v2/4.png`,
-      `${HOST}/2d/2.webp`,
-      `${HOST}/2d/3.webp`,
-      `${HOST}/2d/4.webp`,
-      `${HOST}/2d/5.webp`
+    `${HOST}/2d/2.webp`,
+    `${HOST}/2d/3.webp`,
+    `${HOST}/2d/4.webp`,
+    `${HOST}/2d/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "885.95",
@@ -489,25 +490,22 @@ const OFFERS_V2=[
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    size: [
+    sizes: [
       {
-        name: "King/Cali King",
-        size: "104 x 90 in"
-      },
-      {
-        name: "Queen",
-        size: "90 x 90 in"
-      }
-    ],
-    priceOptions: [
-      {
-        name: "King/Cali King USD $129.00",
+        key:"1",
+        name: "1 Box",
         price: 129
       }, {
-        name: "Queen USD $119.00",
-        price: 119
+        key:"3",
+        name: "3 Boxes",
+        price: 139
+      }, {
+        key:"5",
+        name: "5 Boxes",
+        price: 159
       }
     ],
+    variants: JSON.parse(await readFile('./utils/multiple-products-staging/detergent.json','utf-8')),
     changes: [
       {
         type: "add_variant",
@@ -527,10 +525,10 @@ const OFFERS_V2=[
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg?v=1733592307",
     productImageUrls: [`${HOST}/1a/1.webp`,
-      `${HOST}/1a/2.webp`,
-      `${HOST}/1a/3.webp`,
-      `${HOST}/1a/4.webp`,
-      `${HOST}/1a/5.webp`
+    `${HOST}/1a/2.webp`,
+    `${HOST}/1a/3.webp`,
+    `${HOST}/1a/4.webp`,
+    `${HOST}/1a/5.webp`
     ],
     productDescription: ["No description available"],
     originalPrice: "2629.95",
@@ -545,12 +543,12 @@ const OFFERS_V2=[
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    priceOptions: [
+    sizes: [
       {
-        name: "King/Cali King USD $129.00",
+        name: "King/Cali King",
         price: 129
       }, {
-        name: "Queen USD $119.00",
+        name: "Queen",
         price: 119
       }
     ],
