@@ -317,7 +317,7 @@ const OFFERS_V2 = [
   {
     id: "1a",
     title: "One time offer",
-    productTitle: "A SECOND SET",
+    productTitle: "3 Zone Comforter",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697",
     productImageUrls: [`https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697`,
@@ -326,7 +326,7 @@ const OFFERS_V2 = [
     `${HOST}/1a/4.webp`,
     `${HOST}/1a/5.webp`
     ],
-    productDescription: ["Almost all of our customers eventually buy more Miracle Comforters because their relatives and friends get bed envy!"],
+    productDescription: ["Zoned for better sleep. Most comforters make you choose: too heavy and sweaty, or too thin and chilly. The Miracle Made® 3-Temp-Zone Comforter™ solves for both with NASA-inspired design that helps regulate your body temperature while you sleep—using less fill where we naturally run warm, and more where we tend to get cold. Paired with silver-infused fabric that prevents up to 99.7% of bacteria growth, it stays cleaner, longer—so you sleep deeper, wake fresher, and feel better every day."],
     originalPrice: "949.95",
     discountedPrice: "949.95",
     features: [
@@ -349,11 +349,11 @@ const OFFERS_V2 = [
       {
         key:"king/cali_king",
         name: "King/Cali King",
-        price: 129
+        price: 299
       }, {
         key:"queen",
         name: "Queen",
-        price: 119
+        price: 289
       }
     ],
     variants: JSON.parse(await readFile('./utils/multiple-products-staging/comforter.json','utf-8')),
@@ -375,7 +375,7 @@ const OFFERS_V2 = [
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
-    productDescription: ["No description available"],
+    productDescription: ["No more flipping your pillow to find the cool side. RemyCloud by Miracle Made keeps your head cool and your neck supported for deeper, more comfortable sleep. Flip between breathable cotton for a gentle breeze, or high-tech nylon that feels up to 4°F cooler on contact. Two adjustable inserts let you build your ideal loft for proper neck and spine alignment—whether you sleep on your back, side, or stomach. It’s fully washable, with antimicrobial treatment to stay fresher between washes."],
     productImageUrls: [`${HOST}/v2/2.png`,
     `${HOST}/1b/2.webp`,
     `${HOST}/1b/3.webp`,
@@ -430,7 +430,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["No description available"],
+    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort.","Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","","",""],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
@@ -447,11 +447,11 @@ const OFFERS_V2 = [
       {
         key:"king/cali_king",
         name: "King/Cali King",
-        price: 129
+        price: 215
       }, {
         key:"full_queen",  
         name: "Full Queen",
-        price: 119
+        price: 200
       }
     ],
     variants: JSON.parse(await readFile('./utils/multiple-products-staging/duvet.json','utf-8')),
@@ -477,7 +477,7 @@ const OFFERS_V2 = [
     `${HOST}/2d/4.webp`,
     `${HOST}/2d/5.webp`
     ],
-    productDescription: ["No description available"],
+    productDescription: ["Meet the detergent that's tough on stains, gentle on skin, and kind to the planet. Miracle Made® Detergent Sheets combine deep-cleaning power with an earth-friendly design, offering a smarter, simpler way to do laundry.","","","",""],
     originalPrice: "885.95",
     discountedPrice: "885.95",
     colors: [
@@ -494,15 +494,15 @@ const OFFERS_V2 = [
       {
         key:"1",
         name: "1 Box",
-        price: 129
+        price: 29
       }, {
         key:"3",
         name: "3 Boxes",
-        price: 139
+        price: 59
       }, {
         key:"5",
         name: "5 Boxes",
-        price: 159
+        price: 79
       }
     ],
     variants: JSON.parse(await readFile('./utils/multiple-products-staging/detergent.json','utf-8')),
