@@ -375,7 +375,7 @@ const OFFERS_V2 = [
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
-    productDescription: ["No more flipping your pillow to find the cool side. RemyCloud by Miracle Made keeps your head cool and your neck supported for deeper, more comfortable sleep. Flip between breathable cotton for a gentle breeze, or high-tech nylon that feels up to 4°F cooler on contact. Two adjustable inserts let you build your ideal loft for proper neck and spine alignment—whether you sleep on your back, side, or stomach. It’s fully washable, with antimicrobial treatment to stay fresher between washes."],
+    productDescription: ["No more flipping your pillow to find the cool side. RemyCloud by Miracle Made keeps your head cool and your neck supported for deeper, more comfortable sleep. Flip between breathable cotton for a gentle breeze, or high-tech nylon that feels up to 4°F cooler on contact. Two adjustable inserts let you build your ideal loft for proper neck and spine alignment—whether you sleep on your back, side, or stomach. It's fully washable, with antimicrobial treatment to stay fresher between washes."],
     productImageUrls: [`${HOST}/v2/2.png`,
     `${HOST}/1b/2.webp`,
     `${HOST}/1b/3.webp`,
@@ -399,11 +399,11 @@ const OFFERS_V2 = [
       {
         key:"king",
         name: "King",
-        price: 129
+        price: 105
       }, {
         key:"standard",
         name: "Standard",
-        price: 119
+        price: 89
       }
     ],
     changes: [
