@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
 import { readFile, writeFile } from 'fs/promises';
+import { productOptionMapping,fetchShopifyProducts } from './getShopifyProducts.js';
 config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
@@ -315,7 +316,7 @@ const OFFERS = [
 
 const OFFERS_V2 = [
   {
-    id: "1a",
+    id: "gid://shopify/Product/9160098578676",
     title: "One time offer",
     productTitle: "3 ZONE COMFORTER",
     productImageURL:
@@ -335,42 +336,9 @@ const OFFERS_V2 = [
       "Infused with silver that prevents up to 99.7% of bacteria growth",
       "Hypoallergenic and 100% vegan"
     ],
-    colors: [
-      {
-        name: "White",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
-      },
-      {
-        name: "Stone",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
-      }
-    ],
-    sizes: [
-      {
-        key:"king/cali_king",
-        name: "King/Cali King",
-        price: 299
-      }, {
-        key:"queen",
-        name: "Queen",
-        price: 289
-      }
-    ],
-    variants: JSON.parse(await readFile('./utils/multiple-products-staging/comforter.json','utf-8')),
-    changes: [
-      {
-        type: "add_variant",
-        variantID: Number("46968634933475"),
-        quantity: 1,
-        discount: (() => {
-          const d = 30;
-          return { value: d, valueType: "percentage", title: `${d}% off` };
-        })(),
-      },
-    ],
   },
   {
-    id: "1b",
+    id: "gid://shopify/Product/9160100708596",
     title: "One time offer",
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
@@ -385,41 +353,9 @@ const OFFERS_V2 = [
     variants: JSON.parse(await readFile('./utils/multiple-products-staging/pillow.json','utf-8')) ,
     originalPrice: "629.95",
     discountedPrice: "629.95",
-    colors: [
-      {
-        name: "White",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
-      },
-      {
-        name: "Stone",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
-      }
-    ],
-    sizes: [
-      {
-        key:"king",
-        name: "King",
-        price: 105
-      }, {
-        key:"standard",
-        name: "Standard",
-        price: 89
-      }
-    ],
-    changes: [
-      {
-        type: "add_variant",
-        variantID: Number("446968634867939"),
-        quantity: 1,
-        discount: (() => {
-          const d = 50;
-          return { value: d, valueType: "percentage", title: `${d}% off` };
-        })(),
-      },
-    ],
   },
   {
-    id: "2d",
+    id: "gid://shopify/Product/9160098709748",
     title: "One time offer",
     productTitle: "DUVET COVER",
     productImageURL:
@@ -443,32 +379,9 @@ const OFFERS_V2 = [
         img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
       }
     ],
-    sizes: [
-      {
-        key:"king/cali_king",
-        name: "King/Cali King",
-        price: 215
-      }, {
-        key:"full_queen",  
-        name: "Full Queen",
-        price: 200
-      }
-    ],
-    variants: JSON.parse(await readFile('./utils/multiple-products-staging/duvet.json','utf-8')),
-    changes: [
-      {
-        type: "add_variant",
-        variantID: Number("46968634900707"),
-        quantity: 1,
-        discount: (() => {
-          const d = getRandomDiscount();
-          return { value: d, valueType: "percentage", title: `${d}% off` };
-        })(),
-      },
-    ],
   },
   {
-    id: "2c",
+    id: "gid://shopify/Product/9160099070196",
     title: "One time offer",
     productTitle: "SILVER-SAFE DETERGENT",
     productImageUrls: [`${HOST}/v2/4.png`,
@@ -480,89 +393,6 @@ const OFFERS_V2 = [
     productDescription: ["Meet the detergent that's tough on stains, gentle on skin, and kind to the planet. Miracle Made® Detergent Sheets combine deep-cleaning power with an earth-friendly design, offering a smarter, simpler way to do laundry.","","","",""],
     originalPrice: "885.95",
     discountedPrice: "885.95",
-    colors: [
-      {
-        name: "White",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
-      },
-      {
-        name: "Stone",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
-      }
-    ],
-    sizes: [
-      {
-        key:"1",
-        name: "1 Box",
-        price: 29
-      }, {
-        key:"3",
-        name: "3 Boxes",
-        price: 59
-      }, {
-        key:"5",
-        name: "5 Boxes",
-        price: 79
-      }
-    ],
-    variants: JSON.parse(await readFile('./utils/multiple-products-staging/detergent.json','utf-8')),
-    changes: [
-      {
-        type: "add_variant",
-        variantID: Number("446968634802403"),
-        quantity: 1,
-        discount: (() => {
-          const d = getRandomDiscount();
-          return { value: d, valueType: "percentage", title: `${d}% off` };
-        })(),
-      },
-    ],
-  },
-  {
-    id: "3b",
-    title: "One time offer",
-    productTitle: "Extra Pillowcases",
-    productImageURL:
-      "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg?v=1733592307",
-    productImageUrls: [`${HOST}/1a/1.webp`,
-    `${HOST}/1a/2.webp`,
-    `${HOST}/1a/3.webp`,
-    `${HOST}/1a/4.webp`,
-    `${HOST}/1a/5.webp`
-    ],
-    productDescription: ["No description available"],
-    originalPrice: "2629.95",
-    discountedPrice: "2629.95",
-    colors: [
-      {
-        name: "White",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/white.svg?v=1751651865",
-      },
-      {
-        name: "Stone",
-        img: "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/stone.svg?v=1751651866"
-      }
-    ],
-    sizes: [
-      {
-        name: "King/Cali King",
-        price: 129
-      }, {
-        name: "Queen",
-        price: 119
-      }
-    ],
-    changes: [
-      {
-        type: "add_variant",
-        variantID: Number("46968634441955"),
-        quantity: 1,
-        discount: (() => {
-          const d = getRandomDiscount();
-          return { value: d, valueType: "percentage", title: `${d}% off` };
-        })(),
-      },
-    ],
   },
 ]
 
@@ -595,8 +425,19 @@ export function getOffers() {
   return OFFERS;
 }
 
-export function getOffersV2() {
-  return OFFERS_V2;
+export async function getOffersV2() {
+  const products=OFFERS_V2.map(async (offer) => {
+    const optionOrder=productOptionMapping[offer.id];
+    const productData=await fetchShopifyProducts(offer.id, optionOrder);
+    return {
+      ...offer,
+      optionOrder:optionOrder.map((option) => option.toLowerCase()),
+      ...productData
+    }
+
+  });
+  return Promise.all(products);
+
 }
 
 export function getSelectedOffer(offerId) {
@@ -606,3 +447,5 @@ export function getSelectedOffer(offerId) {
 export function getSizes() {
   return SIZES;
 }
+
+// console.dir(await getOffersV2(),{ depth: null });

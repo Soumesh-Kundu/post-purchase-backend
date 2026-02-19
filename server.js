@@ -137,7 +137,7 @@ const detectDeviceType = (userAgent) => {
 };
 
 const luxeFabricVarientId = 46968634933475
-app.post('/api/v2/offer', (req, res) => {
+app.post('/api/v2/offer', async (req, res) => {
     const { varientIds } = req.body;
     // console.log(req.headers)
     
@@ -150,10 +150,10 @@ app.post('/api/v2/offer', (req, res) => {
     // if (varientIds.includes(luxeFabricVarientId)) {
     //     offerId = '1a';
     // }
-    const offers = getOffersV2();
-    const offerProducts = offers.slice(0, 4);
+    const offers = await getOffersV2();
+    const offerProducts = offers;
 
-    res.send(JSON.stringify({ offers: offerProducts, deviceType }));
+    res.send(JSON.stringify({ offers: offerProducts, deviceType:"mobile" }));
 });
 const generateRandomString = () => {
 		function generateRandomSegment(length) {

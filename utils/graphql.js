@@ -138,3 +138,24 @@ query ($query: String!) {
   }
 }
 `
+
+export const PRODUCT_QUERY = `#graphql
+query($id: ID!) {
+    product(id: $id) {
+        options(first:10){
+            name
+            values
+        }
+        variants(first:250){
+            nodes{
+                id
+                price
+                selectedOptions{
+                    name
+                    value
+                }
+                inventoryQuantity
+            }
+        }
+    }
+}`
