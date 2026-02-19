@@ -153,7 +153,7 @@ app.post('/api/v2/offer', async (req, res) => {
     const offers = await getOffersV2();
     const offerProducts = offers;
 
-    res.send(JSON.stringify({ offers: offerProducts, deviceType:"mobile" }));
+    res.send(JSON.stringify({ offers: offerProducts, deviceType }));
 });
 const generateRandomString = () => {
 		function generateRandomSegment(length) {
