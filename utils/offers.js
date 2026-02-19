@@ -366,7 +366,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort.","Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","","",""],
+    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort.","Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","",""],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
