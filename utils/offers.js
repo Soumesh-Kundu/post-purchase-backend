@@ -366,7 +366,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort. Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","","","",""],
+    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort. Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","","","","",""],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
@@ -390,7 +390,7 @@ const OFFERS_V2 = [
     `${HOST}/2d/4.webp`,
     `${HOST}/2d/5.webp`
     ],
-    productDescription: ["Meet the detergent that's tough on stains, gentle on skin, and kind to the planet. Miracle Made® Detergent Sheets combine deep-cleaning power with an earth-friendly design, offering a smarter, simpler way to do laundry.","","","","",""],
+    productDescription: ["Meet the detergent that's tough on stains, gentle on skin, and kind to the planet. Miracle Made® Detergent Sheets combine deep-cleaning power with an earth-friendly design, offering a smarter, simpler way to do laundry.","","","","","",""],
     originalPrice: "885.95",
     discountedPrice: "885.95",
   },
