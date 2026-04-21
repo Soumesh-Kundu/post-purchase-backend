@@ -328,7 +328,7 @@ const OFFERS_V2 = [
     `${HOST}/1a/4.webp`,
     `${HOST}/1a/5.webp`
     ],
-    productDescription: ["Zoned for better sleep. Most comforters make you choose: too heavy and sweaty, or too thin and chilly. The Miracle Made® 3-Temp-Zone Comforter™ solves for both with NASA-inspired design that helps regulate your body temperature while you sleep—using less fill where we naturally run warm, and more where we tend to get cold. Paired with silver-infused fabric that prevents up to 99.7% of bacteria growth, it stays cleaner, longer—so you sleep deeper, wake fresher, and feel better every day."],
+    productDescription: ["3-Zone Comforter","Up to 55% off","","Warm where you want it. Breathable where you don't. Designed to prevent overheating without sacrificing that soft, cozy feel."],
     originalPrice: "949.95",
     discountedPrice: "949.95",
     features: [
@@ -345,7 +345,7 @@ const OFFERS_V2 = [
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
-    productDescription: ["No more flipping your pillow to find the cool side. RemyCloud by Miracle Made keeps your head cool and your neck supported for deeper, more comfortable sleep. Flip between breathable cotton for a gentle breeze, or high-tech nylon that feels up to 4°F cooler on contact. Two adjustable inserts let you build your ideal loft for proper neck and spine alignment—whether you sleep on your back, side, or stomach. It's fully washable, with antimicrobial treatment to stay fresher between washes."],
+    productDescription: ["Adjustable Pillows","Up to 33% off","",`Cool-to-the-touch, adjustable support for that "just right" feel—whether you sleep on your back, side, or stomach.`],
     productImageUrls: [`${HOST}/v2/2.png`,
     `${HOST}/1b/2.webp`,
     `${HOST}/1b/3.webp`,
@@ -369,7 +369,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["Wrap yourself in luxury with the Miracle Made® Duvet Cover, crafted from Miracle Clean &amp; Cool™ fabric for a silky-smooth feel and optimal comfort. Designed to complement your bedding, it delivers a touch of elegance and advanced functionality for the perfect night's sleep.","","","","",""],
+    productDescription: ["Detergent Sheets","BOGO","","Pre-measured detergent sheets with cleaner ingredients and no bulky plastic—so caring for your sheets stays simple."],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
