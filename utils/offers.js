@@ -360,7 +360,7 @@ const OFFERS_V2 = [
     id: "gid://shopify/Product/9160098709748",
     title: "One time offer",
     productTitle: "DUVET COVER",
-    tag:"duet-cover",
+    tag:"duvet-cover",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1733592307",
     productImageUrls: [`${HOST}/v2/3.png`,
