@@ -40,7 +40,7 @@ export async function fetchShopifyProducts(id, optionOrders) {
         if (optionData) {
             result[option.toLowerCase()] = optionData.values.map(value=>{
                 return {
-                    key:value,
+                    key:value.toLowerCase().replace(/\s|\//g, "_"),
                     name:value
                 }
             });
@@ -51,12 +51,13 @@ export async function fetchShopifyProducts(id, optionOrders) {
         curr = result.variants;
         for (const [idx, optionName] of Object.entries(optionOrders)) {
             const option = variant.selectedOptions.find(option => option.name === optionName);
+            const optionValue=option.value.toLowerCase().replace(/\s|\//g, "_");
             if (idx < optionOrders.length - 1) {
-                curr[option.value] = curr[option.value] || {};
-                curr = curr[option.value];
+                curr[optionValue] = curr[optionValue] || {};
+                curr = curr[optionValue];
             }
             else {
-                curr[option.value] = {
+                curr[optionValue] = {
                     price: variant.price,
                     inventory: variant.inventoryQuantity,
                     id: variant.id.split("/").pop(),

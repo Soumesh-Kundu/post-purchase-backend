@@ -318,6 +318,7 @@ const OFFERS_V2 = [
   {
     id: "gid://shopify/Product/9160098578676",
     title: "One time offer",
+    tag:"3-zone-comforter",
     productTitle: "3 ZONE COMFORTER",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697",
@@ -340,6 +341,7 @@ const OFFERS_V2 = [
   {
     id: "gid://shopify/Product/9160100708596",
     title: "One time offer",
+    tag: "remycloud-pillow",
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
@@ -358,6 +360,7 @@ const OFFERS_V2 = [
     id: "gid://shopify/Product/9160098709748",
     title: "One time offer",
     productTitle: "DUVET COVER",
+    tag:"duet-cover",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1733592307",
     productImageUrls: [`${HOST}/v2/3.png`,
@@ -384,6 +387,7 @@ const OFFERS_V2 = [
     id: "gid://shopify/Product/9160099070196",
     title: "One time offer",
     productTitle: "SILVER-SAFE DETERGENT",
+    tag:"detergent",
     productImageUrls: [`${HOST}/v2/4.png`,
     `${HOST}/2d/2.webp`,
     `${HOST}/2d/3.webp`,
