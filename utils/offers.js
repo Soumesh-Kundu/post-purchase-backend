@@ -369,7 +369,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["Detergent Sheets","BOGO","","Pre-measured detergent sheets with cleaner ingredients and no bulky plastic—so caring for your sheets stays simple."],
+    productDescription: ["ONE TIME OFFER","ONLY AVAILABLE WITH THIS ORDER","","Since you're already building a better bed, you can add these products at a special rate—no extra shipping, no extra hassle.","Luxe Duvet Cover","Up to 47% off","","Finish the look with the same cool, stay-fresh fabric—so your whole bed works together."],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
@@ -394,7 +394,7 @@ const OFFERS_V2 = [
     `${HOST}/2d/4.webp`,
     `${HOST}/2d/5.webp`
     ],
-    productDescription: ["Meet the detergent that's tough on stains, gentle on skin, and kind to the planet. Miracle Made® Detergent Sheets combine deep-cleaning power with an earth-friendly design, offering a smarter, simpler way to do laundry.","","","","","",""],
+    productDescription: ["Detergent Sheets","BOGO","","Pre-measured detergent sheets with cleaner ingredients and no bulky plastic—so caring for your sheets stays simple."],
     originalPrice: "885.95",
     discountedPrice: "885.95",
   },
