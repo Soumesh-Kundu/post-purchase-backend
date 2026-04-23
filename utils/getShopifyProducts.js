@@ -1,6 +1,5 @@
 import { PRODUCT_QUERY } from "./graphql.js";
 import { callGraphQl } from "./graphql.js"
-import { writeFile } from "fs/promises";
 
 
 export const productIds = [
@@ -43,6 +42,7 @@ export async function fetchShopifyProducts(id, optionOrders) {
     }
     let curr = {};
     const options=product.options;
+    console.log("options", options);
     for (const option of optionOrders) {
         const searchKey=id!==detergentID ? option : "Title";
         const optionData = options.find(opt => opt.name === searchKey);
@@ -51,7 +51,7 @@ export async function fetchShopifyProducts(id, optionOrders) {
                 const optionValue=value.toLowerCase().replace(/\s|\//g, "_");
                 return {
                     key:id!==detergentID ? optionValue : detergentOptions[optionValue],
-                    name:value.split(" - ")[1]
+                    name:id!==detergentID ?value: value.split(" - ")[1]
                 }
             });
         }
@@ -81,4 +81,3 @@ export async function fetchShopifyProducts(id, optionOrders) {
 
     return result;
 }
-
