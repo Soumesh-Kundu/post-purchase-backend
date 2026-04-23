@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { readFile, writeFile } from 'fs/promises';
-import { productOptionMapping,fetchShopifyProducts } from './getShopifyProducts.js';
+import { productOptionMapping,fetchShopifyProducts, productIds } from './getShopifyProducts.js';
 config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
@@ -316,7 +316,7 @@ const OFFERS = [
 
 const OFFERS_V2 = [
   {
-    id: "gid://shopify/Product/9160098578676",
+    id: productIds[0],
     title: "One time offer",
     tag:"3-zone-comforter",
     productTitle: "3 ZONE COMFORTER",
@@ -339,7 +339,7 @@ const OFFERS_V2 = [
     ],
   },
   {
-    id: "gid://shopify/Product/9160100708596",
+    id: productIds[1],
     title: "One time offer",
     tag: "remycloud-pillow",
     productTitle: "EXTRA PILLOW CASES",
@@ -357,7 +357,7 @@ const OFFERS_V2 = [
     discountedPrice: "629.95",
   },
   {
-    id: "gid://shopify/Product/9160098709748",
+    id: productIds[2],
     title: "One time offer",
     productTitle: "DUVET COVER",
     tag:"duvet-cover",
@@ -384,7 +384,7 @@ const OFFERS_V2 = [
     ],
   },
   {
-    id: "gid://shopify/Product/9160099070196",
+    id: productIds[3],
     title: "One time offer",
     productTitle: "SILVER-SAFE DETERGENT",
     tag:"detergent",
