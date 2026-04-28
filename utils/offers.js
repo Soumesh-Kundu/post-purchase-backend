@@ -328,7 +328,7 @@ const OFFERS_V2 = [
     `${HOST}/1a/4.webp`,
     `${HOST}/1a/5.webp`
     ],
-    productDescription: ["3-Zone Comforter","Up to 55% off","Warm where you want it. Breathable where you don't. Designed to prevent overheating without sacrificing that soft, cozy feel.","","","",""],
+    productDescription: ["Warm where you want it. Breathable where you don't. Designed to prevent overheating without sacrificing that soft, cozy feel."],
     originalPrice: "949.95",
     discountedPrice: "949.95",
     features: [
@@ -345,7 +345,7 @@ const OFFERS_V2 = [
     productTitle: "EXTRA PILLOW CASES",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
-    productDescription: ["Adjustable Pillows","Up to 33% off",`Cool-to-the-touch, adjustable support for that "just right" feel—whether you sleep on your back, side, or stomach.`,"","","",""],
+    productDescription: [`Cool-to-the-touch, adjustable support for that "just right" feel—whether you sleep on your back, side, or stomach.`],
     productImageUrls: [`${HOST}/v2/2.png`,
     `${HOST}/1b/2.webp`,
     `${HOST}/1b/3.webp`,
@@ -369,7 +369,7 @@ const OFFERS_V2 = [
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/04.webp",
       "https://try.miraclebrand.co/up/comforter/images/sliders/5b/white/05.webp"
     ],
-    productDescription: ["ONE TIME OFFER","ONLY AVAILABLE WITH THIS ORDER","Since you're already building a better bed, you can add these products at a special rate—no extra shipping, no extra hassle.","Luxe Duvet Cover","Up to 47% off","Finish the look with the same cool, stay-fresh fabric—so your whole bed works together."],
+    productDescription: ["Finish the look with the same cool, stay-fresh fabric—so your whole bed works together."],
     originalPrice: "600.00",
     discountedPrice: "600.00",
     colors: [
@@ -394,7 +394,7 @@ const OFFERS_V2 = [
     `${HOST}/2d/4.webp`,
     `${HOST}/2d/5.webp`
     ],
-    productDescription: ["Detergent Sheets","BOGO","Pre-measured detergent sheets with cleaner ingredients and no bulky plastic—so caring for your sheets stays simple.","","","",""],
+    productDescription: ["Pre-measured detergent sheets with cleaner ingredients and no bulky plastic—so caring for your sheets stays simple."],
     originalPrice: "885.95",
     discountedPrice: "885.95",
   },
