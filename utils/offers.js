@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { readFile, writeFile } from 'fs/promises';
-import { productOptionMapping,fetchShopifyProducts, productIds } from './getShopifyProducts.js';
+import { productOptionMapping, fetchShopifyProducts, productIds } from './getShopifyProducts.js';
 config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
@@ -318,15 +318,19 @@ const OFFERS_V2 = [
   {
     id: productIds[0],
     title: "One time offer",
-    tag:"3-zone-comforter",
-    productTitle: "3 ZONE COMFORTER",
+    tag: "3-zone-comforter",
+    productTitle: "3-Temperature-Zone Comforter",
+    default: {
+      option1: "full_queen",
+      option2: "white"
+    },
     productImageURL:
       "https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697",
     productImageUrls: [`https://cdn.shopify.com/s/files/1/1647/4405/files/MIR_3-ZoneComforter-PDP-product_white1.webp?v=1737147697`,
-    `${HOST}/1a/2.webp`,
-    `${HOST}/1a/3.webp`,
-    `${HOST}/1a/4.webp`,
-    `${HOST}/1a/5.webp`
+      `${HOST}/1a/2.webp`,
+      `${HOST}/1a/3.webp`,
+      `${HOST}/1a/4.webp`,
+      `${HOST}/1a/5.webp`
     ],
     productDescription: ["Warm where you want it. Breathable where you don't. Designed to prevent overheating without sacrificing that soft, cozy feel."],
     originalPrice: "949.95",
@@ -342,7 +346,11 @@ const OFFERS_V2 = [
     id: productIds[1],
     title: "One time offer",
     tag: "remycloud-pillow",
-    productTitle: "EXTRA PILLOW CASES",
+    productTitle: "Adjustable Pillows",
+    default: {
+      option1: "standard",
+      option2: "set_of_2"
+    },
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg?v=1733592307",
     productDescription: [`Cool-to-the-touch, adjustable support for that "just right" feel—whether you sleep on your back, side, or stomach.`],
@@ -352,15 +360,19 @@ const OFFERS_V2 = [
     `${HOST}/1b/4.webp`,
     `${HOST}/1b/5.webp`
     ],
-    variants: JSON.parse(await readFile('./utils/multiple-products-staging/pillow.json','utf-8')) ,
+    variants: JSON.parse(await readFile('./utils/multiple-products-staging/pillow.json', 'utf-8')),
     originalPrice: "629.95",
     discountedPrice: "629.95",
   },
   {
     id: productIds[2],
     title: "One time offer",
-    productTitle: "DUVET COVER",
-    tag:"duvet-cover",
+    productTitle: "Luxe Duvet Cover",
+    default: {
+      option1: "full_queen",
+      option2: "sky_blue"
+    },
+    tag: "duvet-cover",
     productImageURL:
       "https://cdn.shopify.com/s/files/1/0628/4574/7315/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1733592307",
     productImageUrls: [`${HOST}/v2/3.png`,
@@ -386,8 +398,11 @@ const OFFERS_V2 = [
   {
     id: productIds[3],
     title: "One time offer",
-    productTitle: "SILVER-SAFE DETERGENT",
-    tag:"detergent",
+    productTitle: "Detergent Sheets",
+    tag: "detergent",
+    default:{
+      option1:"b1g1"
+    },
     productImageUrls: [`${HOST}/v2/4.png`,
     `${HOST}/2d/2.webp`,
     `${HOST}/2d/3.webp`,
@@ -430,12 +445,12 @@ export function getOffers() {
 }
 
 export async function getOffersV2() {
-  const products=OFFERS_V2.map(async (offer) => {
-    const optionOrder=productOptionMapping[offer.id];
-    const productData=await fetchShopifyProducts(offer.id, optionOrder);
+  const products = OFFERS_V2.map(async (offer) => {
+    const optionOrder = productOptionMapping[offer.id];
+    const productData = await fetchShopifyProducts(offer.id, optionOrder);
     return {
       ...offer,
-      optionOrder:optionOrder.map((option) => option.toLowerCase()),
+      optionOrder: optionOrder.map((option) => option.toLowerCase()),
       ...productData
     }
 
