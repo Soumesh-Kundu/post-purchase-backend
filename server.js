@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
+import serverless from 'serverless-http';
 import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString, queryOrderByReferenceId } from "./utils/graphql.js"
 import { fetchProductData, firstOfferMapping, generalVariantMapping } from "./utils/fetchProduct.js"
 import cors from 'cors';
@@ -424,6 +425,10 @@ app.post('/api/view-receipt-conversion',async (req,res)=>{
 })
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
+
+export default serverless(app);
