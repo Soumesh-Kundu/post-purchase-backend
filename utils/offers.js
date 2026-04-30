@@ -346,7 +346,7 @@ const OFFERS_V2 = [
     id: productIds[1],
     title: "One time offer",
     tag: "remycloud-pillow",
-    productTitle: "Adjustable Pillows",
+    productTitle: "RemyCloud Adjustable Cooling Pillow",
     default: {
       option1: "standard",
       option2: "set_of_2"
