@@ -360,7 +360,6 @@ const OFFERS_V2 = [
     `${HOST}/1b/4.webp`,
     `${HOST}/1b/5.webp`
     ],
-    variants: JSON.parse(await readFile('./utils/multiple-products-staging/pillow.json', 'utf-8')),
     originalPrice: "629.95",
     discountedPrice: "629.95",
   },
