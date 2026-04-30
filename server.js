@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import serverless from 'serverless-http';
 import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString, queryOrderByReferenceId } from "./utils/graphql.js"
 import { fetchProductData, firstOfferMapping, generalVariantMapping } from "./utils/fetchProduct.js"
 import cors from 'cors';
@@ -21,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static('static'));
+app.use(express.static('public'));
 app.use(cors({
     origin: '*', // Allow all origins for testing; adjust in production
 }));
@@ -431,4 +430,4 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-export default serverless(app);
+export default app;
