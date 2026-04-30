@@ -1,13 +1,31 @@
 import { PRODUCT_QUERY } from "./graphql.js";
 import { callGraphQl } from "./graphql.js"
+import {config } from "dotenv";
+config();
 
-
-export const productIds = [
+const devProductIds=[
     "gid://shopify/Product/9426670878964",//comnforter
     "gid://shopify/Product/9426670944500",//pillowcase
     "gid://shopify/Product/9426670780660",//duvet cover
     "gid://shopify/Product/9426671010036",//detergent
 ]
+
+const prodProductIds=[
+    "gid://shopify/Product/8610367111318",//comnforter
+    "gid://shopify/Product/8610367176854",//pillowcase
+    "gid://shopify/Product/8610366914710",//duvet cover
+    "gid://shopify/Product/8611540205718",//detergent
+]
+
+const envoirment=process.env.NODE_ENV || "development";
+export let productIds;
+if(envoirment==="development"){
+    productIds = devProductIds;
+}
+else if(envoirment==="production"){
+    productIds = prodProductIds;    
+}
+
 const detergentID=productIds[3];
 
 const optionOrders = {
@@ -42,7 +60,6 @@ export async function fetchShopifyProducts(id, optionOrders) {
     }
     let curr = {};
     const options=product.options;
-    console.log("options", options);
     for (const option of optionOrders) {
         const searchKey=id!==detergentID ? option : "Title";
         const optionData = options.find(opt => opt.name === searchKey);
@@ -81,3 +98,4 @@ export async function fetchShopifyProducts(id, optionOrders) {
 
     return result;
 }
+
