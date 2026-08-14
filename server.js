@@ -140,7 +140,7 @@ const detectDeviceType = (userAgent) => {
 
 const luxeFabricVarientId = 46968634933475
 app.post('/api/v2/offer', async (req, res) => {
-    const { varientIds } = req.body;
+    // const { varientIds } = req.body;
     // console.log(req.headers)
     
     // Detect device type from User-Agent header
