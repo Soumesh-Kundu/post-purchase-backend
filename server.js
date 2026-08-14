@@ -203,7 +203,6 @@ app.post('/api/v1/offer', async (req, res) => {
 app.post('/api/sign-changeset', (req, res) => {
     const { changes, referenceId } = req.body;
 
-    console.log("changes", changes);
     const payload = {
         iss: process.env.SHOPIFY_API_KEY,
         jti: uuidv4(),
@@ -211,11 +210,6 @@ app.post('/api/sign-changeset', (req, res) => {
         sub: referenceId,
         changes: changes,
     };
-
-	   mp.track("Upsell_1",{
-                value: '97898797'
-            }
-        );
 
     const token = jwt.sign(payload, process.env.SHOPIFY_API_SECRET);
     res.setHeader('Content-Type', 'application/json');
