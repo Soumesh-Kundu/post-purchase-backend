@@ -12,12 +12,17 @@
     ],
     "routes": [
         {
-            "src":"/public/(.*)",
-            "dest":"/public/$1"
+            "src": "/public/(.*)",
+            "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
             "dest": "server.js"
         }
-    ]
+    ],
+    "functions": {
+        "server.js": {
+            "includeFiles": "utils/products/**"
+        }
+    }
 }

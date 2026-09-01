@@ -9,6 +9,7 @@ import fs from 'fs/promises';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
 import { shopifyDev } from './utils/secondaryGraphql.js';
 const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
+import path from 'path';
 dotenv.config();
 
 
@@ -115,7 +116,8 @@ app.post('/api/v1/offer', async (req, res) => {
         let offerId = firstProduct;
         const product = offerId === '2d' ? FirstOfferExtra : FirstOffer;
 
-        const alreadyMappedVariants = await fs.readFile(`./utils/products/${offerId}.json`, 'utf-8');
+        const jsonPath = path.join(process.cwd(), 'utils', 'products', `${offerId}.json`);
+        const alreadyMappedVariants = await fs.readFile(jsonPath);
         const variantsMapping = JSON.parse(alreadyMappedVariants);
 
         const products = Object.entries(variantsMapping).map(item => ({
@@ -159,7 +161,8 @@ app.post('/api/next-offer', async (req, res) => {
     }
     const nextOffer = getSelectedOffer(nextOfferid);
 
-    const alreadyMappedVariants = await fs.readFile(`./utils/products/${nextOfferid}.json`, 'utf-8');
+    const jsonPath = path.join(process.cwd(), 'utils', 'products', `${offerId}.json`);
+    const alreadyMappedVariants = await fs.readFile(jsonPath, 'utf-8');
     const variantsMapping = JSON.parse(alreadyMappedVariants);
 
     const product = {
