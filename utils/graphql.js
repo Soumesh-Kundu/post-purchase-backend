@@ -1,16 +1,16 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-export async function callGraphQl(query,variables={}){
-    const res=await fetch(`https://${process.env.SHOP_DOMAIN}/admin/api/2026-01/graphql.json`,{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-Shopify-Access-Token':process.env.ACCESS_TOKEN
-        },
-        body:JSON.stringify({query,variables})
-    })
-    return await res.json()
+export async function callGraphQl(query, variables = {}) {
+  const res = await fetch(`https://${process.env.SHOP_DOMAIN}/admin/api/2026-01/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': process.env.ACCESS_TOKEN
+    },
+    body: JSON.stringify({ query, variables })
+  })
+  return await res.json()
 }
 
 export const mutationOrderEditBeginString = `#graphql
@@ -38,7 +38,7 @@ mutation orderEditBegin($id: ID!) {
   }
 }`
 
-export const mutationOrderEditSetQuantityString=`#graphql
+export const mutationOrderEditSetQuantityString = `#graphql
 mutation addVariantToOrder($id:ID!,$lineItemId:ID!,$restock:Boolean!,$quantity:Int!){
   orderEditSetQuantity(id:$id, lineItemId:$lineItemId,restock:$restock,quantity: $quantity){
     calculatedOrder {
@@ -65,7 +65,7 @@ mutation addVariantToOrder($id:ID!,$lineItemId:ID!,$restock:Boolean!,$quantity:I
 }
 `
 
-export const mutationOrderAddVariantString=`#graphql
+export const mutationOrderAddVariantString = `#graphql
 mutation addVariantToOrder($id:ID!,$variantId:ID!,$quantity:Int!){
   orderEditAddVariant(id: $id, variantId:$variantId, quantity: $quantity){
     calculatedOrder {
@@ -86,7 +86,7 @@ mutation addVariantToOrder($id:ID!,$variantId:ID!,$quantity:Int!){
   }
 }`
 
-export const mutationOrderEditCommitString=`#graphql
+export const mutationOrderEditCommitString = `#graphql
 mutation commitEdit($id:ID!) {
   orderEditCommit(id:$id, notifyCustomer: false, staffNote: "Updated by app") {
     order {
@@ -100,7 +100,7 @@ mutation commitEdit($id:ID!) {
 }
 `
 
-export const queryOrderByReferenceId=`#graphql
+export const queryOrderByReferenceId = `#graphql
 query ($query: String!) {
   orders(first:1,query:$query){
     nodes{
@@ -111,29 +111,9 @@ query ($query: String!) {
         }
       }
       customAttributes{
-        key
-        value
-      }
-      lineItems(first:250){
-        nodes{
-          id
-          title
-					quantity
-          variant{
-            id
-            inventoryItem{
-              unitCost{
-                amount
-              }
-            }
-          }
-					discountedUnitPriceSet{
-            presentmentMoney{
-              amount
-            }
-          }
+          key
+          value
         }
-      }
     }
   }
 }

@@ -23,7 +23,9 @@ export const FirstOffer = {
     text: "Note: This is a one-time-only offer that you will never see again."
   }],
   productTitle: "Luxe",
-  productDescription: ["Thousands of our customers come back for more once they feel the life-changing differences in their sleep. Enjoy the silver-infused benefits of Miracle Made® Sheets throughout every bedroom in your home, or even keep an extra set on hand since you have this huge discount opportunity!"],
+  productDescription: [
+    { type: "normal", text: "Thousands of our customers come back for more once they feel the life-changing differences in their sleep. Enjoy the silver-infused benefits of Miracle Made® Sheets throughout every bedroom in your home, or even keep an extra set on hand since you have this huge discount opportunity!" }
+  ],
   price: 112,
   compareAtPrice: 112,
   discount: 50,
@@ -53,6 +55,82 @@ export const FirstOffer = {
   ]
 }
 
+export const FirstOfferExtra = {
+  id: "2d",
+  preTitle: 'WAIT! WE HAVE SOMETHING SPECIAL FOR YOU!',
+  title: [{
+    type: 'normal',
+    text: "Get more Extra Luxe sheets for"
+  }, {
+    type: 'success',
+    text: "up to 76% OFF!"
+  }],
+  subTitle: [{
+    type: 'normal',
+    text: "Everyone deserves to have ultra-luxurious, smooth, and silky feeling sheets, so try them now 100% Risk Free"
+  }],
+  productTitle: "Extra Luxe",
+  productDescription: [
+    {
+      type: "normal",
+      text: "Thousands of our customers come back for more once they feel the life-changing differences in their sleep. Enjoy the silver-infused benefits of Miracle Made® Sheets throughout every bedroom in your home, or even keep an extra set on hand since you have this huge discount opportunity!"
+    }
+  ],
+  features: [
+    [{
+      type: "bold",
+      size: "medium",
+      text: "COOLIT™ technology"
+    }, {
+      type: "normal",
+      size: "medium",
+      text: "helps keep you up to an extra 3.6°F cooler for optimal sleep"
+    }],
+    [{
+      type: "bold",
+      size: "medium",
+      text: "Patented True Grip® technology"
+    }, {
+      type: "normal",
+      size: "medium",
+      text: "ensures an extra snug fit to keep your fitted sheet in place"
+    }],
+    [
+      {
+        type: "normal",
+        size: "medium",
+        text: "Ultra-Soft Sateen Feel: Our most luxurious 100% cotton sateen weave, with a smoother drape and softness that gets better over time."
+      }
+    ]
+  ],
+  price: 129,
+  compareAtPrice: 112,
+  discount: 52,
+  optionsOrder: ['sizes', 'colors'],
+  sizes: [
+    { label: 'Twin', value: 'twin' },
+    { label: 'Twin XL', value: 'twin_xl' },
+    { label: 'Full', value: 'full' },
+    { label: 'Queen', value: 'queen' },
+    { label: 'King', value: 'king' },
+    { label: 'Split King', value: 'split_king' },
+    { label: 'Cali King', value: 'cali_king' }
+  ],
+  colors: [
+    { label: 'Rosewood', value: 'rosewood' },
+    { label: 'Stone', value: 'stone' },
+    { label: 'White', value: 'white' },
+    { label: 'Sky Blue', value: 'sky_blue' },
+    { label: 'Silver Grey', value: 'silver_grey' },
+    { label: 'Charcoal', value: 'charcoal' },
+    { label: 'Navy Blue', value: 'navy_blue' },
+    { label: 'Sand', value: 'sand' },
+    { label: 'Ivory', value: 'ivory' },
+    { label: 'Terracotta', value: 'terracotta' },
+    { label: 'Sage', value: 'sage' },
+    { label: 'Slate Blue', value: 'slate_blue' }
+  ]
+}
 
 const OFFERS = [
   {
@@ -72,11 +150,24 @@ const OFFERS = [
     }
     ],
     productTitle: "Luxe",
-    productDescription: ['Our premium pillowcases are infused with silver to help prevent up to 99.7% of bacterial growth, keeping your bedding cleaner for longer. Say goodbye to bacteria build-up and rest easy on pillowcases that stay fresh and inviting—night after night'],
+    productDescription: [{
+      type: "normal",
+      text:
+        'Our premium pillowcases are infused with silver to help prevent up to 99.7% of bacterial growth, keeping your bedding cleaner for longer. Say goodbye to bacteria build-up and rest easy on pillowcases that stay fresh and inviting—night after night'
+    }],
     features: [
-      "3x less laundry",
-      "Designed for a Cleaner Sleep",
-      "Luxuriously soft sleep, every. single. night."
+      [{
+        type: "bold",
+        text: "3x less laundry"
+      }],
+      [{
+        type: "bold",
+        text: "Designed for a Cleaner Sleep"
+      }],
+      [{
+        type: "bold",
+        text: "Luxuriously soft sleep, every. single. night."
+      }]
     ],
     price: 44,
     compareAtPrice: 61,
@@ -112,6 +203,116 @@ const OFFERS = [
     ]
   },
   {
+    id: "11b",
+    preTitle: "YOUR CLEAN, COOL BEDROOM ISN’T COMPLETE WITHOUT THIS PILLOW",
+    title: [{
+      type: 'normal',
+      text: "Add our RemyCloud Cooling Pillow for"
+    },
+    {
+      type: "success",
+      text: "up to 33% OFF!"
+    }],
+    subTitle: [{
+      type: 'normal',
+      text: "This is your one-time chance to upgrade your rest with our smartest pillow yet."
+    },
+    ],
+    productTitle: "Luxe",
+    productDescription: [
+      {
+        type: "bold",
+        text: "RemyCloud keeps your head cool and your neck supported for deeper, more comfortable sleep."
+      },
+      {
+        type: "normal",
+        text: "With breathable cotton on one side and ultra-cooling nylon on the other, it helps regulate temperature all night. Two adjustable inserts let you customize the height to ease neck pain, no matter how you sleep. Plus, antimicrobial protection helps it stay fresher between washes."
+      },
+      {
+        type: "bold",
+        size: "small",
+        text: "Select your deal below for your pillow!"
+      }
+    ],
+    price: 44,
+    compareAtPrice: 61,
+    discount: 27,
+    optionsOrder: ['quantity', 'sizes'],
+    quantity: [
+      { label: 'Individual', value: 'individual' },
+      { label: 'Set of 2', value: 'set_of_2' }
+    ],
+    sizes: [
+      {
+        label: 'Standard',
+        value: 'standard'
+      },
+      {
+        label: "King",
+        value: "king"
+      }
+    ]
+  },
+  {
+    id: "5b-cooling",
+    preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a blanket!",
+    title: [{
+      type: 'normal',
+      text: "Get our newest silver infused blanket"
+    }, {
+      type: 'success',
+      text: "25% OFF!"
+    }],
+    subTitle: [{
+      type: 'normal',
+      text: "We are offering our premium blanket to new customers only!"
+    }],
+    productTitle: "Get our Comforter",
+    productDescription: [
+      {
+        type: "bold",
+        size: "large",
+        text: `Less sweat, ultra-breathable,luxurious comfort all in one`
+      },
+      {
+        type: "normal",
+        text: 'Designed to keep you at the perfect temperature all night long. To top it off, the silver-infused fibers prevent up to 99.7% of bacteria growth, helping you sleep in clean comfort.'
+      }],
+    features: [
+      [{
+        type: "bold",
+        text: 'Makes you feel up to 4° cooler upon contact'
+      }],
+      [{
+        type: "bold",
+        text: 'Silvadur™ Antimicrobial Technology'
+      }],
+      [{
+        type: "bold",
+        text: 'Hypoallergenic'
+      }]
+    ],
+    price: 132,
+    compareAtPrice: 132,
+    discount: 0,
+    optionsOrder: ['colors', 'sizes'],
+    selectionOrder: ['sizes', 'colors'],
+    sizes: [
+      {
+        label: 'Queen',
+        value: 'queen'
+      },
+      {
+        label: 'King/Cali King',
+        value: 'cali_king'
+      }
+    ],
+    colors: [
+      { label: 'Stone', value: 'stone' },
+      { label: 'White', value: 'white' }
+    ]
+  },
+  {
     id: "5b",
     preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a Comforter!",
     title: [{
@@ -126,17 +327,34 @@ const OFFERS = [
       text: "We are offering our premium comforter to new customers only!"
     }],
     productTitle: "Get our Comforter",
-    productDescription: ['Designed to keep you at the perfect temperature all night long. To top it off, the silver-infused fibers prevent up to 99.7% of bacteria growth, helping you sleep in clean comfort.'],
+    productDescription: [{
+      type: "bold",
+      size: "large",
+      text: `Less sweat, ultra-breathable,luxurious comfort all in one`
+    }, { type: 'normal', text: 'Designed to keep you at the perfect temperature all night long. To top it off, the silver-infused fibers prevent up to 99.7% of bacteria growth, helping you sleep in clean comfort.' }],
     features: [
-      'Perfect temperature for your body all night long',
-      'Ultra-luxurious, 300-thread count Miracle Clean & Cool™ fabric',
-      'Infused with silver that prevents up to 99.7% of bacteria growth',
-      'Hypoallergenic and 100% vegan'
+      [{
+        type: 'bold',
+        text: 'Perfect temperature for your body all night long'
+      }],
+      [{
+        type: 'bold',
+        text: 'Ultra-luxurious, 300-thread count Miracle Clean & Cool™ fabric'
+      }],
+      [{
+        type: 'bold',
+        text: 'Infused with silver that prevents up to 99.7% of bacteria growth'
+      }],
+      [{
+        type: 'bold',
+        text: 'Hypoallergenic and 100% vegan'
+      }]
     ],
     price: 132,
     compareAtPrice: 132,
     discount: 0,
     optionsOrder: ['colors', 'sizes'],
+    selectionOrder: ['sizes', 'colors'],
     sizes: [
       {
         label: 'Queen',
@@ -167,8 +385,20 @@ const OFFERS = [
       text: "Note: This is a one-time-only offer that you will never see again."
     }],
     productTitle: "Miracle Made® Duvet Cover",
-    productDescription: ['Complete your collection for the ultimate sleep experience. Made with silver-infused Miracle Clean & Cool™ to keep you cool and prevent up to 99.7% of bacteria growth.'],
+    productDescription: [{ type: 'normal', text: 'Complete your collection for the ultimate sleep experience. Made with silver-infused Miracle Clean & Cool™ to keep you cool and prevent up to 99.7% of bacteria growth.' }],
     features: [
+      [{
+        type: "bold",
+        text: 'Cooling comfort',
+      }],
+      [{
+        type: "bold",
+        text: 'Liquid-proof to protect from spills and stains',
+      }],
+      [{
+        type: "bold",
+        text: 'Prevents up to 99.7% bacteria-growth',
+      }],
     ],
     price: 105,
     compareAtPrice: 200,
@@ -205,11 +435,20 @@ const OFFERS = [
       text: "Note: This is a one-time-only offer that you will never see again."
     }],
     productTitle: "Mattress Protector",
-    productDescription: ['Sleep cool and keep your mattress cleaner for longer with our silver-infused and leak-proof mattress protector that prevents up to 99.7% of bacteria growth.'],
+    productDescription: [{ type: 'normal', text: 'Sleep cool and keep your mattress cleaner for longer with our silver-infused and leak-proof mattress protector that prevents up to 99.7% of bacteria growth.' }],
     features: [
-      'Cooling comfort',
-      'Liquid-proof to protect from spills and stains',
-      'Prevents up to 99.7% bacteria-growth',
+      [{
+        type: "bold",
+        text: 'Cooling comfort',
+      }],
+      [{
+        type: "bold",
+        text: 'Liquid-proof to protect from spills and stains',
+      }],
+      [{
+        type: "bold",
+        text: 'Prevents up to 99.7% bacteria-growth',
+      }],
     ],
     price: 179,
     compareAtPrice: 104,
@@ -241,13 +480,28 @@ const OFFERS = [
       text: "Say goodbye to bulky detergent bottles and get twice the clean with our BOGO offer!"
     }],
     productTitle: "Miracle Detergent",
-    productDescription: ['Tired of bulky detergent bottles? With our Buy 1, Get 1 Free deal, enjoy less waste, cleaner laundry, and more shelf space—all while keeping your skin safe from harsh chemicals.'],
+    productDescription: [{ type: 'normal', text: 'Tired of bulky detergent bottles? With our Buy 1, Get 1 Free deal, enjoy less waste, cleaner laundry, and more shelf space—all while keeping your skin safe from harsh chemicals.' }],
     features: [
-      'Removes even the toughest stains',
-      'No toxic ingredients',
-      'Crafted for sensitive skin',
-      'Less space, less waste',
-      'No more messy spills',
+      [{
+        type: "bold",
+        text: 'Removes even the toughest stains',
+      }],
+      [{
+        type: "bold",
+        text: 'No toxic ingredients',
+      }],
+      [{
+        type: "bold",
+        text: 'Crafted for sensitive skin',
+      }],
+      [{
+        type: "bold",
+        text: 'Less space, less waste',
+      }],
+      [{
+        type: "bold",
+        text: 'No more messy spills',
+      }]
     ],
     optionsOrder: ['sizes', 'colors'],
     sizes: [
@@ -280,18 +534,34 @@ const OFFERS = [
       text: "Wrap yourself in clean comfort—lighter, fresher, better."
     }],
     productTitle: "Miracle Gauze Robe",
-    productDescription: [`Slip into something softer. Our new breathable gauze robe is crafted from 4-ply cotton that feels light yet cozy—and only gets softer with every wash. Silver-treated to prevent up to 99.7% of bacteria growth, it stays fresher between wears so you can relax without the laundry stress. Designed with thoughtful details like Japanese sashiko-inspired stitching, easy patch pockets, and a mid-calf fit that flatters and flows. It's not just a robe—it’s your new evening ritual.`],
+    productDescription: [{ type: 'normal', text: `Slip into something softer. Our new breathable gauze robe is crafted from 4-ply cotton that feels light yet cozy—and only gets softer with every wash. Silver-treated to prevent up to 99.7% of bacteria growth, it stays fresher between wears so you can relax without the laundry stress. Designed with thoughtful details like Japanese sashiko-inspired stitching, easy patch pockets, and a mid-calf fit that flatters and flows. It's not just a robe—it's your new evening ritual.` }],
     features: [
-      'Lightweight, breathable 4-ply cotton gauze',
-      'Silver-treated to prevent up to 99.7% of bacteria growth',
-      'Relaxed mid-calf fit with Japanese sashiko-inspired stitching',
-      'Practical patch pockets and adjustable waist tie',
-      'Easy to wash, hard to wear out—saves you time, effort, and money',
+      [{
+        type: "bold",
+        text: 'Lightweight, breathable 4-ply cotton gauze',
+      }],
+      [{
+        type: "bold",
+        text: 'Silver-treated to prevent up to 99.7% of bacteria growth',
+      }],
+      [{
+        type: "bold",
+        text: 'Relaxed mid-calf fit with Japanese sashiko-inspired stitching',
+      }],
+      [{
+        type: "bold",
+        text: 'Practical patch pockets and adjustable waist tie',
+      }],
+      [{
+        type: "bold",
+        text: 'Easy to wash, hard to wear out—saves you time, effort, and money',
+      }],
     ],
     price: 89,
     compareAtPrice: 119,
     discount: 24,
     optionsOrder: ['colors', 'sizes'],
+    selectionOrder: ['sizes', 'colors'],
     sizes: [
       {
         label: "Small",
@@ -399,8 +669,8 @@ const OFFERS_V2 = [
     title: "One time offer",
     productTitle: "Detergent Sheets",
     tag: "detergent",
-    default:{
-      option1:"b1g1"
+    default: {
+      option1: "b1g1"
     },
     productImageUrls: [`${HOST}/v2/4.png`,
     `${HOST}/2d/2.webp`,
@@ -419,10 +689,12 @@ export const prudctGraph = {
   "1a": ["1b", "2d"],
   "1b": ["2c", "2d"],
   "2c-v2": ["3b"],
-  "2d": ["3b"],
-  "2c": ["3b"],
-  "3b": ["5b"],
-  "5b": ["6b"],
+  "2d": ["5b"],
+  "2c": ["5b"],
+  "11b": ["5b-cooling"],
+  "5b-cooling": ["3b"],
+  "3b": ["6b"],
+  "5b": ["11b"],
   "6b": ["8b"],
   "8b": ["4b"],
   "4b": ["9b"],

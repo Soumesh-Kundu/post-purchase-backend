@@ -20,7 +20,7 @@ const prodProductIds=[
 const envoirment=process.env.NODE_ENV || "development";
 export let productIds;
 if(envoirment==="development"){
-    productIds = devProductIds;
+    productIds = prodProductIds;
 }
 else if(envoirment==="production"){
     productIds = prodProductIds;    
