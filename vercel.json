@@ -3,7 +3,12 @@
     "builds": [
         {
             "src": "server.js",
-            "use": "@vercel/node"
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    "utils/products/**"
+                ]
+            }
         },
         {
             "src": "public/**/*",
@@ -19,10 +24,5 @@
             "src": "/(.*)",
             "dest": "server.js"
         }
-    ],
-    "functions": {
-        "server.js": {
-            "includeFiles": "utils/products/**"
-        }
-    }
+    ]
 }
