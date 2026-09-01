@@ -7,11 +7,9 @@ import { FirstOffer, FirstOfferExtra, getOffers, getOffersV2, getSelectedOffer, 
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
-import mixpanel from 'mixpanel';
 import { shopifyDev } from './utils/secondaryGraphql.js';
 const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
 dotenv.config();
-const mp = mixpanel.init(process.env.MIXPANEL_ID)
 
 
 const app = express();
