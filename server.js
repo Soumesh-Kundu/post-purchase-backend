@@ -161,7 +161,7 @@ app.post('/api/next-offer', async (req, res) => {
     }
     const nextOffer = getSelectedOffer(nextOfferid);
 
-    const jsonPath = path.join(process.cwd(), 'utils', 'products', `${offerId}.json`);
+    const jsonPath = path.join(process.cwd(), 'utils', 'products', `${nextOfferId}.json`);
     const alreadyMappedVariants = await fs.readFile(jsonPath, 'utf-8');
     const variantsMapping = JSON.parse(alreadyMappedVariants);
 
