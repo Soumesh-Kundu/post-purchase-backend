@@ -19,6 +19,10 @@ export async function fetchProductData(slug) {
       const response=await fetch(query,{
         headers:authHeaders
       });
+    if (!response.ok) {
+        console.log(response)
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const responseData=await response.json();
     const productData=responseData.data;
     console.timeEnd("fetch-product-data");
