@@ -511,7 +511,7 @@ const OFFERS = [
         text: 'No more messy spills',
       }]
     ],
-    optionsOrder: ['sizes', 'colors'],
+    optionsOrder: ['sizes'],
     sizes: [
       {
         label: "Buy 1 Get 1 FREE (64 Loads) - $29*",
@@ -525,10 +525,7 @@ const OFFERS = [
         label: "Buy 3 Get 3 FREE (192 Loads) - $87*",
         value: "3"
       },
-    ],
-    colors: [{
-      label: 'Default', value: 'default'
-    }]
+    ]
   },
   {
     id: "9b",

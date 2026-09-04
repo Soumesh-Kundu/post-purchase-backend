@@ -48,7 +48,7 @@ export function normalizeMiddleDash(value) {
 }
 
 export function normalizeFabric(value) {
-    const name = value.includes("Extra Luxe") ? "Extra Luxe" : "Luxe";
+    const name = value.includes("Extra Luxe") ? "Set of 2 (Extra Luxe)" : "Set of 2 (Luxe)";
     return { key: toSnakeCase(name), name };
 }
 
