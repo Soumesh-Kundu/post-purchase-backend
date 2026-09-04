@@ -1,15 +1,13 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import { callGraphQl, mutationOrderAddVariantString, mutationOrderEditBeginString, mutationOrderEditCommitString, mutationOrderEditSetQuantityString, queryOrderByReferenceId } from "./utils/graphql.js"
+import { callGraphQl, queryOrderByReferenceId } from "./utils/graphql.js"
 import cors from 'cors';
-import { FirstOffer, FirstOfferExtra, getOffers, getOffersV2, getSelectedOffer, prudctGraph, softIdToHardIdMap } from './utils/offers.js';
+import { FirstOffer, FirstOfferExtra,  getOffersV2, getSelectedOffer, prudctGraph} from './utils/offers.js';
 import dotenv from 'dotenv';
-import fs from 'fs/promises';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
-import { shopifyDev } from './utils/secondaryGraphql.js';
 const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
-import path from 'path';
+import { getFirstProductVariants } from './utils/getFirstProductVariants.js';
 dotenv.config();
 
 
@@ -54,25 +52,6 @@ const detectDeviceType = (userAgent) => {
     return 'desktop';
 };
 
-app.post('/api/post-purchase-type', async (req, res) => {
-    const { referenceId } = req.body;
-    try {
-        if (!referenceId) {
-            return res.status(400).json({ error: 'Missing referenceId parameter' });
-        }
-        const orders = await shopifyDev(queryOrderByReferenceId, {
-            query: `checkout_token:${referenceId}`
-        })
-        console.log({ referenceId })
-        const order = orders.data.orders.nodes[0]
-        console.dir({ orders }, { depth: null })
-        return res.json({ postPurchaseType: order?.customAttributes.find(attr => attr.key === "source")?.value === "miracle-headless" ? "multi-page" : null })
-    }
-    catch (err) {
-        console.log(err)
-        return res.status(500).json({ error: 'Failed to fetch post-purchase type' });
-    }
-})
 
 app.post('/api/v2/offer', async (req, res) => {
     try {
@@ -116,13 +95,11 @@ app.post('/api/v1/offer', async (req, res) => {
         let offerId = firstProduct;
         const product = offerId === '2d' ? FirstOfferExtra : FirstOffer;
 
-        const jsonPath = path.join(process.cwd(), 'utils', 'products', `${offerId}.json`);
-        const alreadyMappedVariants = await fs.readFile(jsonPath);
-        const variantsMapping = JSON.parse(alreadyMappedVariants);
+        const result = await getFirstProductVariants(offerId);
 
-        const products = Object.entries(variantsMapping).map(item => ({
+        const products = Object.entries(result).map(item => ({
             ...product,
-            variants: item[1],
+            ...item[1],
         }))
         res.send(JSON.stringify({ offer: products,deviceType }));
     }
@@ -148,7 +125,7 @@ app.post('/api/sign-changeset', (req, res) => {
 })
 
 app.post('/api/next-offer', async (req, res) => {
-    const { offerId, accept = false, referenceId, currentVariantId } = req.body;
+    const { offerId, accept = false } = req.body;
     let shouldOfferId = offerId;
     if (offerId.includes("/")) {
         shouldOfferId = offerId.split("/")[0];
@@ -159,79 +136,7 @@ app.post('/api/next-offer', async (req, res) => {
     if (!nextOfferid) {
         return res.send(JSON.stringify({ offer: null }))
     }
-    const nextOffer = getSelectedOffer(nextOfferid);
-
-    const jsonPath = path.join(process.cwd(), 'utils', 'products', `${nextOfferid}.json`);
-    const alreadyMappedVariants = await fs.readFile(jsonPath, 'utf-8');
-    const variantsMapping = JSON.parse(alreadyMappedVariants);
-
-    const product = {
-        ...nextOffer,
-        variants: variantsMapping
-    };
-
-    const orders = await shopifyDev(queryOrderByReferenceId, {
-        query: `checkout_token:${referenceId}`
-    })
-    console.dir({ referenceId, orders }, { depth: null })
-    const order = orders.data.orders.nodes[0]
-    const convertId = order.customAttributes.find(attr => attr.key === "userId")?.value
-    const lineItems = order.lineItems?.nodes || []
-    const upsellItem = lineItems.find(item => item.variant.id === `gid://shopify/ProductVariant/${currentVariantId}`)
-    console.log({ upsellItem, accept, currentVariantId })
-    if (accept && currentVariantId && upsellItem && convertId) {
-        const convertSDK = new ConvertSDK({
-            sdkKey: '100414426/100416021',
-            environment: 'production',
-            dataRefreshInterval: 5000
-        });
-        await convertSDK.onReady();
-        const transactionId = generateRandomString()
-        let userContext = convertSDK.createContext(convertId);
-        const upsellQuantity = upsellItem.quantity
-        const upsellRevenue = Number(upsellItem.discountedUnitPriceSet?.presentmentMoney?.amount) * upsellQuantity
-        const upsellProfit = (Number(upsellItem.discountedUnitPriceSet?.presentmentMoney?.amount) - Number(upsellItem.variant.inventoryItem.unitCost?.amount)) * upsellQuantity
-        userContext?.trackConversion('add-upsell', {
-            conversionData: [{
-                transactionId: `${transactionId}_${referenceId}_upsell`,
-                amount: upsellRevenue,
-                productsCount: upsellQuantity
-            }]
-        });
-        userContext?.trackConversion('total-revenue', {
-            conversionData: [{
-                transactionId: `${transactionId}_${referenceId}_upsell_revenue`,
-                amount: upsellRevenue,
-                productsCount: upsellQuantity
-            }]
-        });
-
-        if (upsellProfit > 0) {
-            userContext.trackConversion("profit", {
-                conversionData: [{
-                    transactionId: `${transactionId}_${referenceId}_profit`,
-                    amount: upsellProfit,
-                    productsCount: upsellQuantity
-                }]
-            })
-            userContext.trackConversion("upsell-profit", {
-                conversionData: [{
-                    transactionId: `${transactionId}_${referenceId}_upsell_profit`,
-                    amount: upsellProfit,
-                    productsCount: upsellQuantity
-                }]
-            })
-        }
-        mp.track("Upsell_1", {
-            value: upsellRevenue,
-            created_at: new Date().toISOString(),
-            order_number: transactionId,
-            userId: convertId,
-            order_id: `${transactionId}_${referenceId}_upsell`
-        }
-        );
-        console.log(mp);
-    }
+    const product = await getSelectedOffer(nextOfferid);
 
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ offer: { cid: nextOfferid, ...product } }));

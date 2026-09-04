@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 import { readFile, writeFile } from 'fs/promises';
 import { productOptionMapping, fetchShopifyProducts, productIds } from './getShopifyProducts.js';
+import { getSecondProductVariants } from './getSecondProductVariants.js';
 config();
 function getRandomDiscount() {
   return Math.floor(Math.random() * (30 - 15 + 1)) + 15;
@@ -135,6 +136,7 @@ export const FirstOfferExtra = {
 const OFFERS = [
   {
     id: "3b",
+    productId: "gid://shopify/Product/8695289479318",
     preTitle: null,
     title: [{
       type: 'normal',
@@ -204,6 +206,7 @@ const OFFERS = [
   },
   {
     id: "11b",
+    productId: "gid://shopify/Product/8695289413782",
     preTitle: "YOUR CLEAN, COOL BEDROOM ISN’T COMPLETE WITHOUT THIS PILLOW",
     title: [{
       type: 'normal',
@@ -255,6 +258,7 @@ const OFFERS = [
   },
   {
     id: "5b-cooling",
+    productId: "gid://shopify/Product/8695289610390",
     preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a blanket!",
     title: [{
       type: 'normal',
@@ -314,6 +318,7 @@ const OFFERS = [
   },
   {
     id: "5b",
+    productId: "gid://shopify/Product/8695289544854",
     preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a Comforter!",
     title: [{
       type: 'normal',
@@ -372,6 +377,7 @@ const OFFERS = [
   },
   {
     id: "6b",
+    productId: "gid://shopify/Product/8695289675926",
     preTitle: "Wait! COMPLETE YOUR ULTIMATE SLEEP SET",
     title: [{
       type: "normal",
@@ -422,6 +428,7 @@ const OFFERS = [
   },
   {
     id: "8b",
+    productId: "gid://shopify/Product/8695289741462",
     preTitle: "WAIT! COMPLETE YOUR ULTIMATE SLEEP SET",
     title: [{
       type: "normal",
@@ -467,6 +474,7 @@ const OFFERS = [
   },
   {
     id: "4b",
+    productId: "gid://shopify/Product/8695289774230",
     preTitle: "Before you go, give Miracle Made Detergent Sheets a try!",
     title: [{
       type: "Success",
@@ -689,16 +697,15 @@ export const prudctGraph = {
   "1a": ["1b", "2d"],
   "1b": ["2c", "2d"],
   "2c-v2": ["3b"],
-  "2d": ["5b"],
-  "2c": ["5b"],
-  "11b": ["5b-cooling"],
-  "5b-cooling": ["3b"],
-  "3b": ["6b"],
-  "5b": ["11b"],
+  "2d": ["11b"],
+  "2c": ["11b"],
+  "11b": ["3b"],
+  "3b": ["5b-cooling"],
+  "5b-cooling": ["5b"],
+  "5b": ["6b"],
   "6b": ["8b"],
   "8b": ["4b"],
-  "4b": ["9b"],
-  "9b": [null],
+  "4b": [null],
 }
 
 export const softIdToHardIdMap = {
@@ -730,8 +737,13 @@ export async function getOffersV2() {
 
 }
 
-export function getSelectedOffer(offerId) {
-  return OFFERS.find((offer) => offer.id === offerId);
+export async function getSelectedOffer(offerId) {
+  const offer = OFFERS.find((offer) => offer.id === offerId);
+  const result= await getSecondProductVariants(offer.productId, offer.id,offer.selectionOrder ?? offer.optionsOrder);
+  return {
+    ...offer,
+    ...result
+  }
 }
 
 export function getSizes() {
