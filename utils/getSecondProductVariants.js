@@ -6,6 +6,7 @@ import {
     normalizeDuvetSize,
     normalizeMiddleDash,
     uniqueByKey,
+    normalizeQuantity,
 } from "./optionNormalizers.js"
 
 const PRODUCT_QUERY = `
@@ -39,6 +40,9 @@ const DEFAULT_OPTION_NAME_MAP = {
 }
 
 const PRODUCT_CONFIG = {
+    "11b": {
+        normalizers: { quantity: normalizeQuantity },
+    },
     "3b": {
         normalizers: { fabric: normalizeFabric },
     },

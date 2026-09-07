@@ -36,7 +36,6 @@ export function normalizeDuvetSize(value) {
     let name = value;
     if (name.includes("–")) name = name.split("–").pop();
     if (name.includes(" - ")) name = name.split(" - ")[0];
-    if (name.includes("/")) name = name.split("/").pop();
     name = name.trim();
     return { key: toSnakeCase(name), name };
 }
@@ -48,8 +47,17 @@ export function normalizeMiddleDash(value) {
 }
 
 export function normalizeFabric(value) {
-    const name = value.includes("Extra Luxe") ? "Set of 2 (Extra Luxe)" : "Set of 2 (Luxe)";
-    return { key: toSnakeCase(name), name };
+    const isExtraLuxe= value.includes("Extra Luxe");
+    const name = isExtraLuxe ? "Set of 2 (Extra Luxe)" : "Set of 2 (Luxe)";
+    return { key: toSnakeCase(name), name, bestSeller: isExtraLuxe };
+}
+export function normalizeQuantity(value) {
+    let name = value;
+    if (name.includes("/")) name = name.split("/")[0];
+    if (name.includes(" - ")) name = name.split(" - ").pop();
+    name = name.trim();
+    const key=toSnakeCase(name);
+    return { key, name, bestSeller: key === "set_of_2" };
 }
 
 export function uniqueByKey(entries) {
