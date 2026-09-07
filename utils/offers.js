@@ -275,7 +275,7 @@ const OFFERS = [
     productDescription: [
       {
         type: "bold",
-        size: "large",
+        size: "xlarge",
         text: `Less sweat, ultra-breathable,luxurious comfort all in one`
       },
       {
@@ -334,7 +334,7 @@ const OFFERS = [
     productTitle: "Get our Comforter",
     productDescription: [{
       type: "bold",
-      size: "large",
+      size: "xlarge",
       text: `Less sweat, ultra-breathable,luxurious comfort all in one`
     }, { type: 'normal', text: 'Designed to keep you at the perfect temperature all night long. To top it off, the silver-infused fibers prevent up to 99.7% of bacteria growth, helping you sleep in clean comfort.' }],
     features: [
