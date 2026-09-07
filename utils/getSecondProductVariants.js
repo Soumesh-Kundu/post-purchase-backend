@@ -81,7 +81,7 @@ export async function getSecondProductVariants(id, productCode, selectionOrder) 
         );
         result[optionName] = optionData
             ? uniqueByKey(optionData.values.map(value => normalizeByOption(optionName, value)))
-                .map(({ key, name }) => ({ value: key, label: name }))
+                .map(({ key, name, bestSeller }) => ({ value: key, label: name, ...(bestSeller ? { bestSeller } : {}) }))
             : [];
     }
 
