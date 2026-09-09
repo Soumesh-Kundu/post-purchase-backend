@@ -27,7 +27,6 @@ export function normalizeValue(value) {
 export function normalizeSizeAfterSlash(value) {
     let name = value;
     if (name.includes(" - ")) name = name.split(" - ").pop();
-    if (name.includes("/")) name = name.split("/").pop();
     name = name.trim();
     return { key: toSnakeCase(name), name };
 }
