@@ -7,6 +7,7 @@ import {
     normalizeMiddleDash,
     uniqueByKey,
     normalizeQuantity,
+    normalizeSizeWithSuffix,
 } from "./optionNormalizers.js"
 
 const PRODUCT_QUERY = `
@@ -41,7 +42,7 @@ const DEFAULT_OPTION_NAME_MAP = {
 
 const PRODUCT_CONFIG = {
     "11b": {
-        normalizers: { quantity: normalizeQuantity },
+        normalizers: { quantity: normalizeQuantity,sizes: normalizeSizeWithSuffix },
     },
     "3b": {
         normalizers: { fabric: normalizeFabric },

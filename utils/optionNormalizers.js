@@ -24,6 +24,11 @@ export function normalizeValue(value) {
     return { key: toSnakeCase(name), name };
 }
 
+export function normalizeSizeWithSuffix(value, suffix="_d") {
+    const name = value.split(" - ").pop().trim();
+    return { key: toSnakeCase(name + suffix), name };
+}
+
 export function normalizeSizeAfterSlash(value) {
     let name = value;
     if (name.includes(" - ")) name = name.split(" - ").pop();
