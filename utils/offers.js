@@ -41,18 +41,16 @@ export const FirstOffer = {
     { label: 'Cali King', value: 'cali_king' }
   ],
   colors: [
-    { label: 'Rosewood', value: 'rosewood' },
     { label: 'Stone', value: 'stone' },
     { label: 'White', value: 'white' },
     { label: 'Sky Blue', value: 'sky_blue' },
-    { label: 'Silver Grey', value: 'silver_grey' },
-    { label: 'Charcoal', value: 'charcoal' },
     { label: 'Navy Blue', value: 'navy_blue' },
     { label: 'Sand', value: 'sand' },
-    { label: 'Ivory', value: 'ivory' },
-    { label: 'Terracotta', value: 'terracotta' },
     { label: 'Sage', value: 'sage' },
-    { label: 'Slate Blue', value: 'slate_blue' }
+    { label: 'Slate Blue', value: 'slate_blue' },
+    { label: 'Silver Grey', value: 'silver_grey' },
+    { label: 'Ivory', value: 'ivory' },
+    { label: 'Rosewood', value: 'rosewood' },
   ]
 }
 
