@@ -256,7 +256,7 @@ const OFFERS = [
   },
   {
     id: "5b-cooling",
-    productId: "gid://shopify/Product/8695289610390",
+    productId: "gid://shopify/Product/8695289544854",
     preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a blanket!",
     title: [{
       type: 'normal',
@@ -316,7 +316,7 @@ const OFFERS = [
   },
   {
     id: "5b",
-    productId: "gid://shopify/Product/8695289544854",
+    productId: "gid://shopify/Product/8695289610390",
     preTitle: "Your Antimicrobial Bedroom Isn't Complete Without a Comforter!",
     title: [{
       type: 'normal',
@@ -436,7 +436,7 @@ const OFFERS = [
       text: "up to 50% OFF!"
     }],
     subTitle: [{
-      type: "normal",
+      type: "bold",
       text: "Note: This is a one-time-only offer that you will never see again."
     }],
     productTitle: "Mattress Protector",

@@ -45,7 +45,7 @@ const PRODUCT_CONFIG = {
         normalizers: { quantity: normalizeQuantity,sizes: normalizeSizeWithSuffix },
     },
     "3b": {
-        normalizers: { fabric: normalizeFabric },
+        normalizers: { fabric: normalizeFabric, sizes: normalizeSizeWithSuffix },
     },
     "5b": {
         normalizers: { sizes: normalizeSizeAfterSlash },
