@@ -24,7 +24,7 @@ export function normalizeValue(value) {
     return { key: toSnakeCase(name), name };
 }
 
-export function normalizeSizeWithSuffix(value, suffix="_d") {
+export function normalizeSizeWithSuffix(value, suffix="_b") {
     const name = value.split(" - ").pop().trim();
     return { key: toSnakeCase(name + suffix), name };
 }
