@@ -723,7 +723,8 @@ export async function getSelectedOffer(offerId) {
   const result= await getSecondProductVariants(offer.productId, offer.id,offer.selectionOrder ?? offer.optionsOrder);
   return {
     ...offer,
-    ...result
+    ...result,
+    ...(/5b|5b-cooling/.test(offerId) ? { colors: offer.colors } : {})
   }
 }
 
