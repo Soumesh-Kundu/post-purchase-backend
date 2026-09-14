@@ -44,7 +44,7 @@ export const FirstOffer = {
     { label: 'Stone', value: 'stone' },
     { label: 'White', value: 'white' },
     { label: 'Sky Blue', value: 'sky_blue' },
-    { label: 'Navy Blue', value: 'navy' },
+    { label: 'Navy Blue', value: 'navy_blue' },
     { label: 'Sand', value: 'sand' },
     { label: 'Sage', value: 'sage' },
     { label: 'Slate Blue', value: 'slate_blue' },
@@ -390,20 +390,6 @@ const OFFERS = [
     }],
     productTitle: "Miracle Made® Duvet Cover",
     productDescription: [{ type: 'normal', text: 'Complete your collection for the ultimate sleep experience. Made with silver-infused Miracle Clean & Cool™ to keep you cool and prevent up to 99.7% of bacteria growth.' }],
-    features: [
-      [{
-        type: "bold",
-        text: 'Cooling comfort',
-      }],
-      [{
-        type: "bold",
-        text: 'Liquid-proof to protect from spills and stains',
-      }],
-      [{
-        type: "bold",
-        text: 'Prevents up to 99.7% bacteria-growth',
-      }],
-    ],
     price: 105,
     compareAtPrice: 200,
     discount: 47,
