@@ -49,8 +49,8 @@ export const FirstOffer = {
     { label: 'Sage', value: 'sage' },
     { label: 'Slate Blue', value: 'slate_blue' },
     { label: 'Silver Grey', value: 'silver_grey' },
-    { label: 'Ivory', value: 'ivory' },
     { label: 'Rosewood', value: 'rosewood' },
+    { label: 'Ivory', value: 'ivory' },
   ]
 }
 
