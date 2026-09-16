@@ -230,6 +230,11 @@ const OFFERS = [
         text: "With breathable cotton on one side and ultra-cooling nylon on the other, it helps regulate temperature all night. Two adjustable inserts let you customize the height to ease neck pain, no matter how you sleep. Plus, antimicrobial protection helps it stay fresher between washes."
       },
       {
+        type:"bold",
+        size:"large",
+        text: "Standard: 20'' x 26''\r\nKing: 20'' x 36''"
+      },
+      {
         type:"normal",
         text: "Standard: 20'' x 26''\r\nKing: 20'' x 36''"
       },
