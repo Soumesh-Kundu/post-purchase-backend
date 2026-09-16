@@ -231,10 +231,12 @@ const OFFERS = [
       },
       {
         type:"bold",
+        size:"plain",
         text: "Size Guide"
       },
       {
         type:"normal",
+        size:"plain",
         text: "Standard: 20'' x 26''\r\nKing: 20'' x 36''"
       },
       {
