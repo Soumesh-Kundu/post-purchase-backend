@@ -104,7 +104,7 @@ app.post('/api/post-purchase-type', async (req, res) => {
         let offer = []
         if (hasSheetProduct) {
             const result = await getFirstProductVariants('2c');
-            offers = Object.entries(result).map(item => ({
+            offer = Object.entries(result).map(item => ({
                 ...FirstOffer,
                 ...item[1],
             }))
