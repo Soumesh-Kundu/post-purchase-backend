@@ -110,6 +110,14 @@ query ($query: String!) {
           amount
         }
       }
+      lineItems(first:50){
+        nodes{
+          product{
+            id
+            title
+          }
+        }
+      }
       customAttributes{
           key
           value

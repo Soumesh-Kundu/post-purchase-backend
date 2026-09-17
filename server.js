@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import { callGraphQl, queryOrderByReferenceId } from "./utils/graphql.js"
 import cors from 'cors';
-import { FirstOffer, FirstOfferExtra,  getOffersV2, getSelectedOffer, prudctGraph} from './utils/offers.js';
+import { FirstOffer, FirstOfferExtra, getOffersV2, getSelectedOffer, prudctGraph } from './utils/offers.js';
 import dotenv from 'dotenv';
 import * as ConvertSDKModule from "@convertcom/js-sdk"
 const ConvertSDK = ConvertSDKModule.default?.default || ConvertSDKModule.default || ConvertSDKModule;
@@ -87,11 +87,43 @@ const generateRandomString = () => {
     return `${segment1}-${segment2}-${segment3}-${segment4}`;
 };
 
+const sheetProductIds = ['gid://shopify/Product/8687833251990', 'gid://shopify/Product/8687833153686']
+app.post('/api/post-purchase-type', async (req, res) => {
+    const { referenceId } = req.body;
+    try {
+        let hasSheetProduct=false;
+        if(referenceId){
+            const orders = await callGraphQl(queryOrderByReferenceId, {
+                query: `checkout_token:${referenceId}`
+            })
+            const order = orders.data.orders.nodes[0]
+            const lineItems = order?.lineItems.nodes || []
+            hasSheetProduct = lineItems.some(item => sheetProductIds.includes(item.product.id));
+        }
+        const deviceType = detectDeviceType(req.headers['user-agent']);
+        let offers = []
+        if (hasSheetProduct) {
+            const result = await getFirstProductVariants('2c');
+            offers = Object.entries(result).map(item => ({
+                ...FirstOffer,
+                ...item[1],
+            }))
+        }
+        else {
+            offers = await getOffersV2();
+        }
+        res.send(JSON.stringify({ postPurchaseType: hasSheetProduct ? 'multi-page' : 'single-page',offers, deviceType }));
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Failed to fetch post-purchase type' });
+    }
+})
+
 app.post('/api/v1/offer', async (req, res) => {
     try {
 
         const deviceType = detectDeviceType(req.headers['user-agent']);
-        const {firstProduct} = req.body;
+        const { firstProduct } = req.body;
         let offerId = firstProduct;
         const product = offerId === '2d' ? FirstOfferExtra : FirstOffer;
 
@@ -101,7 +133,7 @@ app.post('/api/v1/offer', async (req, res) => {
             ...product,
             ...item[1],
         }))
-        res.send(JSON.stringify({ offer: products,deviceType }));
+        res.send(JSON.stringify({ offer: products, deviceType }));
     }
     catch (err) {
         console.log(err)
