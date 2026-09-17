@@ -101,7 +101,7 @@ app.post('/api/post-purchase-type', async (req, res) => {
             hasSheetProduct = lineItems.some(item => sheetProductIds.includes(item.product.id));
         }
         const deviceType = detectDeviceType(req.headers['user-agent']);
-        let offers = []
+        let offer = []
         if (hasSheetProduct) {
             const result = await getFirstProductVariants('2c');
             offers = Object.entries(result).map(item => ({
@@ -110,9 +110,9 @@ app.post('/api/post-purchase-type', async (req, res) => {
             }))
         }
         else {
-            offers = await getOffersV2();
+            offer = await getOffersV2();
         }
-        res.send(JSON.stringify({ postPurchaseType: hasSheetProduct ? 'multi-page' : 'single-page',offers, deviceType }));
+        res.send(JSON.stringify({ postPurchaseType: hasSheetProduct ? 'multi-page' : 'single-page',offer, deviceType }));
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: 'Failed to fetch post-purchase type' });
