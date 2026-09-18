@@ -133,7 +133,7 @@ app.post('/api/v1/offer', async (req, res) => {
             ...product,
             ...item[1],
         }))
-        res.send(JSON.stringify({ offer: products, deviceType }));
+        res.send(JSON.stringify({ offers: products, deviceType }));
     }
     catch (err) {
         console.log(err)
